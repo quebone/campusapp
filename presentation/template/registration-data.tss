@@ -1,0 +1,41 @@
+#email:attr(value) {content: data(user.email); }
+#email:data[disabled=true]:attr(readonly) {content: "" ; }
+#dni:attr(value)) {content: data(user.dni); }
+#dni:data[disabled=true]:attr(readonly)) {content: "" ; }
+#name:attr(value) {content: data(user.name); }
+#surnames:attr(value) {content: data(user.surnames); }
+#birthDate:attr(value) {content: data(user.birthDate); }
+#address:attr(value) {content: data(user.address); }
+#phone:attr(value) {content: data(user.phone); }
+#country:attr(value) {content: data(user.country); }
+#city:attr(value) {content: data(user.city); }
+#postalCode:attr(value) {content: data(user.postalCode); }
+#registrationType:attr(value) {content: data(registration.registrationType); }
+#registrationType option:nth-child(1):data[registration.registrationType=0]:attr(selected) {content: "" }
+#registrationType option:nth-child(2):data[registration.registrationType=1]:attr(selected) {content: "" }
+#arrivalDay:attr(value) {content: data(registration.arrivalDay); }
+#arrivalDay option:nth-child(1):data[registration.arrivalDay=0]:attr(selected) {content: "" }
+#arrivalDay option:nth-child(2):data[registration.arrivalDay=1]:attr(selected) {content: "" }
+#arrivalDay option:nth-child(3):data[registration.arrivalDay=2]:attr(selected) {content: "" }
+#arrivalDay option:nth-child(4):data[registration.arrivalDay=3]:attr(selected) {content: "" }
+#arrivalTime:attr(value) {content: data(registration.arrivalTime); }
+#arrivalTime option:nth-child(1):data[registration.arrivalTime=0]:attr(selected) {content: "" }
+#arrivalTime option:nth-child(2):data[registration.arrivalTime=1]:attr(selected) {content: "" }
+#firstYearInCampus:data[registration.firstYearInCampus=true]:attr(checked) {content: ""; }
+#musicalKnowledge:data[registration.musicalKnowledge=true]:attr(checked) {content: ""; }
+#accommodation:attr(value) {content: data(attendance.accommodation); }
+#accommodation option:nth-child(1):data[attendance.accommodation=0]:attr(selected) {content: "" }
+#accommodation option:nth-child(2):data[attendance.accommodation=1]:attr(selected) {content: "" }
+#accommodation option:nth-child(3):data[attendance.accommodation=2]:attr(selected) {content: "" }
+#thursdayDinner:data[attendance.meals.thursdayDinner=true]:attr(checked) {content: ""; }
+#fridayLunch:data[attendance.meals.fridayLunch=true]:attr(checked) {content: ""; }
+#fridayDinner:data[attendance.meals.fridayDinner=true]:attr(checked) {content: ""; }
+#saturdayLunch:data[attendance.meals.saturdayLunch=true]:attr(checked) {content: ""; }
+#saturdayDinner:data[attendance.meals.saturdayDinner=true]:attr(checked) {content: ""; }
+#sundayLunch:data[attendance.meals.sundayLunch=true]:attr(checked) {content: ""; }
+#diet:attr(value) {content: data(attendance.diet); }
+#diet option:nth-child(1):data[attendance.diet=0]:attr(selected) {content: "" }
+#diet option:nth-child(2):data[attendance.diet=1]:attr(selected) {content: "" }
+#diet option:nth-child(3):data[attendance.diet=2]:attr(selected) {content: "" }
+#emailSpread:data[registration.emailSpread=true]:attr(checked) {content: ""; }
+#imageRights:data[registration.imageRights=true]:attr(checked) {content: ""; }

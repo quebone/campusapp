@@ -1,0 +1,19 @@
+{
+	"require" : {
+		"php": ">=7.2.0",
+		"doctrine/orm" : "*",
+		"Level-2/Transphporm": "1.1.1"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Campusapp\\" : "/",
+			"Campusapp\\Exceptions\\" : "exceptions",
+			"Campusapp\\Config\\" : "config",
+			"Campusapp\\Service\\" : "service",
+			"Campusapp\\Service\\Entities\\" : "service/entities",
+			"Campusapp\\Presentation\\Controller\\" : "presentation/controller",
+			"Campusapp\\Presentation\\View\\" : "presentation/view",
+			"Campusapp\\Presentation\\Model\\" : "presentation/model"
+		}
+	}
+}

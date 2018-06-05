@@ -1,0 +1,9 @@
+tbody tr {repeat: data(staff)};
+tbody tr:attr(id) {content: "id-", iteration(id) };
+tbody tr td:nth-child(1) {content: iteration(name), " ", iteration(surnames) };
+tbody tr td:nth-child(2) {content: iteration(email) };
+tbody tr td:nth-child(3) {content: iteration(roleName) };
+
+#members option {repeat: data(members) }
+#members option:attr(value) {content: iteration(id) }
+#members option {content: iteration(name), " ", iteration(surnames) }
