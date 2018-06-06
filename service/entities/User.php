@@ -100,7 +100,8 @@ class User implements IEntity
         return $this->birthDate;
     }
     
-    public function setBirthdate(\DateTime $birthDate) {
+    public function setBirthdate($birthDate) {
+        if (is_string($birthDate)) $birthDate = \DateTime::createFromFormat('Y-m-d', $birthDate);
         $this->birthDate = $birthDate;
     }
     
@@ -137,7 +138,7 @@ class User implements IEntity
     }
     
     public function setPostalCode(?string $postalCode) {
-        $this->postalCode = $postalCode;
+        $this->postalCode = sprintf('%05d', $postalCode);
     }
     
     public function getDni(): ?string {

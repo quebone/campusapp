@@ -5,6 +5,7 @@ use Campusapp\Presentation\Model\AttendancesModel;
 use Campusapp\Service\AttendancesService;
 use Campusapp\Presentation\Model\UserModel;
 use Campusapp\Service\UserService;
+use Campusapp\Service\Entities\Attendance;
 
 class AttendancesController extends Controller
 {
@@ -55,15 +56,15 @@ class AttendancesController extends Controller
         }
     }
     
-    public function addAttendance($post): bool {
+    public function addAttendance($post): Attendance {
         $post = $this->normalize($post);
         $us = new UserService();
+        $user = $us->addUser($post);
         try {
-            $user = $us->getUserByEmail($post['email']);
-            $this->as->addAttendance($user, $post['diet'], $post['accommodation'], $post['thursdayDinner'],
+            $attendance = $this->as->addAttendance($user, $post['diet'], $post['accommodation'], $post['thursdayDinner'],
                 $post['fridayLunch'], $post['fridayDinner'], $post['saturdayLunch'], $post['saturdayDinner'],
                 $post['sundayLunch']);
-            return TRUE;
+            return $attendance;
         } catch (\Exception $e) {
             throw $e;
         }

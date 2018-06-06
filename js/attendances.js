@@ -139,7 +139,7 @@ function deleteAttendance(event) {
 function deleteAttendanceReturn(msg) {
 	msg = JSON.parse(msg);
 	if (msg[0]) {
-		
+		window.location.reload();
 	} else {
 		errorMessage(msg[1]);
 	}

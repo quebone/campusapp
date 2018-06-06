@@ -8,10 +8,14 @@ function deleteRegistration(event) {
 		var email = document.getElementById('email').value;
 		var dataToSend = "email=" + email + "&function=deleteRegistration";
 		send(dataToSend, AJAXCONTROLLER, deleteRegistrationReturn);
-		return false;
 	}
 }
 
 function deleteRegistrationReturn(msg) {
-	
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+		window.location.assign('registrations.php');
+	} else {
+		errorMessage(msg[1]);
+	}
 }

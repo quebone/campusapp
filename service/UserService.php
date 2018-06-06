@@ -62,4 +62,30 @@ class UserService extends Service
             throw $e;
         }
     }
+    
+    public function getUserByEmailAndDni(string $email, string $dni): User {
+        try {
+            $users = $this->dao->getByFilter("User", ['email'=>$email, 'dni'=>$dni]);
+            if (count($users) > 0) return $users[0];
+            throw new InstanceNotFoundException;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+    
+    public function addUser(array $data): User {
+        try {
+            $user = $this->getUserByEmail($data['email']);
+        } catch (InstanceNotFoundException $e) {
+            $user = new User();
+            $this->dao->persist($user);
+        }
+        foreach ($data as $key => $value) {
+            if (method_exists($user, 'set' . ucfirst($key))) {
+                $user->{'set' . ucfirst($key)}($value);
+            }
+        }
+        $this->dao->persist($user);
+        return $user;
+    }
 }
