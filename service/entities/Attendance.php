@@ -28,7 +28,7 @@ class Attendance implements IEntity
 	private $meals;
 	
 	public function __construct() {
-	    $this->date = date('Y-m-d H:m:s');
+	    $this->date = new \DateTime();
 	    $this->diet = DIET_NORMAL;
 	    $this->accommodation = ACCOMMODATION_SCHOOL;
 	    $this->meals = new ArrayCollection();
@@ -52,6 +52,14 @@ class Attendance implements IEntity
 	
 	public function setDiet(int $diet) {
 	    $this->diet = $diet;
+	}
+	
+	public function getAccommodation(): int {
+	    return $this->accommodation;
+	}
+	
+	public function setAccommodation(int $accommodation) {
+	    $this->accommodation = $accommodation;
 	}
 	
 	public function getRegistration(): ?Registration {
@@ -98,7 +106,8 @@ class Attendance implements IEntity
 		return [
 		    "id" => $this->id,
 		    "date" => $this->date->format('Y-m-d'),
-		    "turn" => $this->diet,
+		    "diet" => $this->diet,
+		    "accommodation" => $this->accommodation,
 		];
 	}
 	

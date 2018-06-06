@@ -16,7 +16,7 @@ function toArgs($input): array {
 }
 
 function test01() {
-    $_POST = toArgs('function=getEgsMembers&caller=Staff');
+    $_POST = toArgs('name=Gemma&surnames=Solà Serra&email=gemmas23@gmail.com&accommodation=0&diet=0&thursdayDinner=false&fridayLunch=false&fridayDinner=false&saturdayLunch=false&saturdayDinner=false&sundayLunch=false&function=addAttendance&caller=Attendances');
     require_once 'AjaxController.php';
 }
 

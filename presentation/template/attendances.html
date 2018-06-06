@@ -16,34 +16,23 @@
 		      <h4 class="mb-3">Assistents al Campus</h4>
 		      <div class="row">
 		      	<div class="col-md-12 mb-3">
-		      		<table class="table"><thead><th scope="col">Nom</th>
+		      		<table class="table">
+		      			<thead><th scope="col">Nom</th>
 		      				<th scope="col">Correu electrònic</th>
 		      				<th scope="col"></th>
-		      			</thead><tbody><tr id="id-1006"><td>Carles Canellas Crusellas</td>
+		      			</thead>
+		      			<tbody>
+		      				<tr id="id-1006">
+		      					<td>Carles Canellas Crusellas</td>
 		      					<td>carlescanellas@hotmail.com</td>
 		      					<td>
 		      						<i class="material-icons link" title="editar" onclick="editAttendance(event)">edit</i>
 		      						<i class="material-icons link" title="eliminar" onclick="deleteAttendance(event)">delete</i>
 		      					</td>
-		      				</tr><tr id="id-1046"><td>Núria Rovira Román</td>
-		      					<td>famirovi@hotmail.com</td>
-		      					<td>
-		      						<i class="material-icons link" title="editar" onclick="editAttendance(event)">edit</i>
-		      						<i class="material-icons link" title="eliminar" onclick="deleteAttendance(event)">delete</i>
-		      					</td>
-		      				</tr><tr id="id-1050"><td>Gemma Solà Serra</td>
-		      					<td>gemmas23@gmail.com</td>
-		      					<td>
-		      						<i class="material-icons link" title="editar" onclick="editAttendance(event)">edit</i>
-		      						<i class="material-icons link" title="eliminar" onclick="deleteAttendance(event)">delete</i>
-		      					</td>
-		      				</tr><tr id="id-1063"><td>Marta Albet</td>
-		      					<td>albetmarta@hotmail.com</td>
-		      					<td>
-		      						<i class="material-icons link" title="editar" onclick="editAttendance(event)">edit</i>
-		      						<i class="material-icons link" title="eliminar" onclick="deleteAttendance(event)">delete</i>
-		      					</td>
-		      				</tr></tbody></table></div>
+		      				</tr>
+	      				</tbody>
+      				</table>
+    				</div>
 		      </div>
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" onclick="addAttendance()">Afegir assistència</button>
@@ -63,7 +52,10 @@
 	            <div class="row">
 	              <div class="col-md-4 mb-3">
 	                <label for="members">L'assistent és membre EGS</label>
-	                <select class="custom-select d-block w-100" id="members" onchange="getEgsData(event)"><option value="">-- </option><option value="47">Administrador </option><option value="48">Marta Albet</option><option value="49">Àlex Mazcuñán</option><option value="51">Gemma Solà Serra</option><option value="54">Núria Berga</option><option value="55">Ramon Mas</option><option value="60">Carles Canellas Crusellas</option><option value="63">Mª Teresa Bañeres</option><option value="72">Ester Plans</option><option value="74">Núria Rovira Román</option><option value="82">Glòria Canal</option><option value="83">Pepi Casado</option><option value="84">Anna Mª Closa</option><option value="85">Rosa Escalé</option><option value="87">Olga Martínez</option><option value="92">Elisenda Ribó</option><option value="94">Xènia Trullols</option><option value="100">Manuel Sánchez</option><option value="101">Enric Alabern Comas</option><option value="105">David Trias</option><option value="106">Abel Padilla</option><option value="107">Moritz Eiris</option><option value="108">Elisabet Llúria</option><option value="109">Laura Escalé Albàs</option><option value="111">David Cervantes</option><option value="112">Francesc Padró de la Fuente</option><option value="114">Begoña Molina Gómez</option><option value="116">Àngels Pallàs</option><option value="118">Lidia Jimenez</option><option value="121">Carles Chavala Barrera</option><option value="123">Emma Casado Falcón</option><option value="125">Nuri Martínez Claret</option><option value="127">Iolanda Llohis Badia</option><option value="130">Sílvia Ollés Llorach</option><option value="132">Montserrat Basco Estévez</option><option value="133">Eva Méndez Noguera</option><option value="136">Laura Comallonga Álvarez</option><option value="137">Laura Colldeforns Torras</option><option value="142">Susana Alcolado Sanpelayo</option><option value="146">Mar Canet Torra</option><option value="149">Teresa Lluveras Rodon</option><option value="152">Merche Contreras González</option><option value="153">Jose Manuel Contreras González</option><option value="155">Marta Vilajosana Badia</option><option value="159">Judit Tahull Baldomà</option><option value="163">Keila Mármol Lozano</option><option value="164">Maite Laso Closa</option><option value="165">Mercè Farràs Solanelles</option><option value="166">Mercè Castro Colldeforns</option><option value="173">Susana Cabrera Ortega</option><option value="175">Alba Mauri</option><option value="176">Laura Torrentsgenerós</option><option value="177">Fina Casajuana</option><option value="178">Alba Puig Fargas</option><option value="180">Marta Serran Grauvilardell</option><option value="181">Ariadna Simón Rodríguez</option><option value="182">Sílvia Pérez Pujol</option><option value="183">Mònica Garcia Planas</option><option value="184">Alba Aubach Sala</option><option value="185">Tatiana Piza Ruiz</option><option value="186">Aida Piza Ruiz</option><option value="187">Òscar Iglesias Servitja</option><option value="188">Ornella Flores Lledó</option><option value="189">Haydee Carol Castillo Castro</option><option value="190">Jordi Colomer Juher</option><option value="191">Mercè Bonaventura Pujol</option><option value="192">Oriol Bardia Torroja</option><option value="193">Montse Boladeres</option><option value="194">Elisenda Campreciós</option><option value="195">Alba Muntada Prat</option><option value="196">Laura Reguant Cardona</option><option value="197">Laia Muns Serra</option><option value="198">Eva Rovira Arnau</option><option value="199">Marc ( CatPress)</option></select></div>
+	                <select class="custom-select d-block w-100" id="members" onchange="getEgsData(event)">
+	                	<option value="">--</option>
+	                </select>
+	              </div>
 	              <div class="col-md-8 mb-3">
 		              <label for="email">Correu electrònic</label>
 		              <div class="input-group">
@@ -147,7 +139,12 @@
 	            <div class="row">
 	              <div class="col-md-2 mb-3">
 	                <label for="diet">Dieta</label>
-	                <select class="custom-select d-block w-100" id="diet" name="diet" required=""><option value="0" selected="">Normal</option><option value="1">Vegetariana</option><option value="2">Celíaca</option></select></div>
+	                <select class="custom-select d-block w-100" id="diet" name="diet" required="">
+	                	<option value="0" selected="">Normal</option>
+	                	<option value="1">Vegetariana</option>
+	                	<option value="2">Celíaca</option>
+	                </select>
+	              </div>
 	            </div>
 
 					  </div>
@@ -161,7 +158,15 @@
 	  </div>
 	</div>
 
-	<footer class="footer"><div class="container">
+		<footer class="footer">
+	  <div class="container">
 	    <a href="http://esclatgospelsingers.com" target="_blank"><span class="text-muted">Esclat Gospel Singers</span></a>
 	  </div>
-	</footer><script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script><script src="js/scripts.js"></script><script src="js/attendances.js"></script></body></html>
+	</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="js/attendances.js"></script>
+</body>
+</html>

@@ -82,7 +82,7 @@
 
 	            <div class="row">
 	              <div class="col-md-4 mb-3">
-	                <label for="members">L'assistent és membre EGS</label>
+	                <label for="members">L'administrador és membre EGS</label>
 	                <select class="custom-select d-block w-100" id="members" onchange="getEgsData(event)">
 	                	<option value="">--</option>
 	                </select>
@@ -93,36 +93,41 @@
 		                <div class="input-group-prepend">
 		                  <span class="input-group-text">@</span>
 		                </div>
-			              <input type="email" class="form-control" id="email" name="email" placeholder="nom@exemple.com" required="" /></div>
+			              <input type="email" class="form-control" id="email" name="email" placeholder="nom@exemple.com" required="" />
+			            </div>
 	              </div>
               </div>
 
 				      <div class="row">
 	              <div class="col-md-4 mb-3">
 	                <label for="name">Nom</label>
-	                <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required="" /></div>
+	                <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required="" />
+	               </div>
 	              <div class="col-md-8 mb-3">
 	                <label for="surnames">Cognoms</label>
-	                <input type="text" class="form-control" id="surnames" name="surnames" placeholder="" value="" required="" /></div>
+	                <input type="text" class="form-control" id="surnames" name="surnames" placeholder="" value="" required="" />
+	              </div>
 		          </div>
 
 				      <div class="row">
 	              <div class="col-md-6 mb-3">
 	                <label for="password">Contrasenya (mín. 8)</label>
-	                <input type="password" class="form-control" id="password" name="name" placeholder="" value="" required="" /></div>
+	                <input type="password" class="form-control" id="password" name="name" placeholder="" value="" required="" />
+	              </div>
 	              <div class="col-md-6 mb-3">
 	                <label for="password-repeat">Repetir contrasenya</label>
-	                <input type="password" class="form-control" id="password-repeat"  placeholder="" value="" required="" /></div>
+	                <input type="password" class="form-control" id="password-repeat"  placeholder="" value="" required="" />
+	              </div>
 		          </div>
 		
 					  </div>
 					</div>
-		      <div class="modal-footer">
-		        <button type="button" id="saveButton" class="btn btn-primary" onclick="saveAttendance()">Desar</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel·lar</button>
-		      </div>
 		      <input name="function" value="addMember" hidden="" />
 		    </form>
+	      <div class="modal-footer">
+	        <button type="button" id="saveButton" class="btn btn-primary" onclick="saveMember()">Desar</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel·lar</button>
+	      </div>
 	    </div>
 	  </div>
 	</div>

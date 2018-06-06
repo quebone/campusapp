@@ -14,6 +14,7 @@ define("LOGIN_ERROR", "Hi hagut un error en l'entrada de dades. Torna-ho a prova
 define('LOCALE', 0);
 define('REMOTE', 1);
 
+define('ADMIN_EGS_EMAIL', 'admin@esclatgospelsingers.com');
 define('DEFAULT_PASSWORD', 'campusgospel');
 
 // user groups
@@ -50,8 +51,11 @@ define('ACCOMMODATION_SCHOOL', 0);
 define('ACCOMMODATION_CAMP', 1);
 define('ACCOMMODATION_OTHER', 2);
 
-
 // diets
 define('DIET_NORMAL', 0);
 define('DIET_VEGETARIAN', 1);
 define('DIET_CELIAC', 2);
+
+// turns
+define('LUNCH', 0);
+define('DINNER', 1);

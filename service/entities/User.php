@@ -104,6 +104,10 @@ class User implements IEntity
         $this->birthDate = $birthDate;
     }
     
+    public function getBirthdateAsString(): string {
+        return ($this->birthDate == NULL ? "" : $this->birthDate->format('Y-m-d'));
+    }
+    
     public function getAddress(): ?string {
         return $this->address;
     }
@@ -161,7 +165,7 @@ class User implements IEntity
     }
     
     public function removeAttendance(Attendance $attendance): bool {
-        if (!$this->attendances->contains($attendance)) {
+        if ($this->attendances->contains($attendance)) {
             $this->attendances->removeElement($attendance);
             return TRUE;
         }
@@ -175,7 +179,7 @@ class User implements IEntity
             'surnames' => $this->surnames,
             'email' => $this->email,
             'phone' => $this->phone,
-            'birthDate' => $this->birthDate->format('Y-m-d'),
+            'birthDate' => $this->getBirthdateAsString(),
             'address' => $this->address,
             'country' => $this->country,
             'city' => $this->city,

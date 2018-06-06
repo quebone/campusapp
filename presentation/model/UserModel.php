@@ -1,6 +1,9 @@
 <?php
 namespace Campusapp\Presentation\Model;
 
+use Campusapp\Service\Entities\User;
+use Campusapp\Service\UserService;
+
 class UserModel extends Model
 {
     public function __construct() {
@@ -37,5 +40,25 @@ class UserModel extends Model
         $nullMember = ['id' => '0', 'name' => '--'];
         array_unshift($members, $nullMember);
         return $members;
+    }
+    
+    public function getAllUsersData(array $users): array {
+        $data = [];
+        foreach ($users as $user) {
+            $data[] = $this->getUserData($user);
+        }
+        return $data;
+    }
+    
+    public function getUserData(User $user): array {
+        $data = $user->toArray();
+        $us = new UserService();
+        try {
+            $data['joomId'] = $us->getJoomlaUserByEmail($user->getEmail())['id'];
+        } catch (\Exception $e) {
+            $data['joomId'] = 0;
+        } finally {
+            return $data;
+        }
     }
 }
