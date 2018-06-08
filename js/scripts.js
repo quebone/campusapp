@@ -31,6 +31,15 @@ function send(dataToSend, receiver, returnFunction, options = [], method="POST")
 	xmlhttp.send(dataToSend);
 }
 
+function logout() {
+	var dataToSend = "function=logout";
+	send(dataToSend, AJAXCONTROLLER, logoutReturn);
+}
+
+function logoutReturn() {
+	window.location.href = 'index.php';
+}
+
 function infoMessage(msg) {
 	alert(msg);
 }

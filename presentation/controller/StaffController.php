@@ -35,6 +35,7 @@ class StaffController extends Controller
             $us = new UserService();
             $member = $this->ss->getMember(intval($post['id']));
             $data = $this->sm->getStaffData($member);
+            return $data;
         } catch (\Exception $e) {
             throw $e;
         }

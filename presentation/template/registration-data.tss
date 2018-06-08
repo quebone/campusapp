@@ -1,3 +1,5 @@
+@import 'navigation.tss';
+
 #email:attr(value) {content: data(user.email); }
 #email:data[disabled=true]:attr(readonly) {content: "" ; }
 #dni:attr(value)) {content: data(user.dni); }

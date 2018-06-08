@@ -2,6 +2,7 @@
 namespace Campusapp\Service;
 
 use Campusapp\Service\Entities\Staff;
+use Campusapp\Exceptions\InstanceNotFoundException;
 
 class StaffService extends Service
 {
@@ -20,6 +21,16 @@ class StaffService extends Service
     public function getMember(int $id): Staff {
         try {
             return $this->dao->getById("Staff", $id);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+    
+    public function getMemberByEmail(string $email): Staff {
+        try {
+            $result = $this->dao->getByFilter("Staff", ['email'=>$email]);
+            if (count($result) > 0) return $result[0];
+            throw new InstanceNotFoundException();
         } catch (\Exception $e) {
             throw $e;
         }
@@ -56,6 +67,9 @@ class StaffService extends Service
     public function deleteStaff(int $id) {
         try {
             $staff = $this->dao->getById("Staff", $id);
+            if (isset($_SESSION['email']) && !strcmp($staff->getEmail(), $_SESSION['email'])) {
+                throw new \Exception('No et pots eliminar tu mateix');
+            }
             $this->dao->remove($staff);
             $this->dao->flush();
         } catch (\Exception $e) {

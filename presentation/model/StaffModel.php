@@ -21,7 +21,7 @@ class StaffModel extends Model
         $data['roleName'] = ROLES[$data['role']];
         $us = new UserService();
         try {
-            $joomId = $us->getJoomlaUserByEmail($member->getEmail())['id'];
+            $joomId = $us->getJoomlaUserByEmail($staff->getEmail())['id'];
             $data['joomId'] = $joomId;
         } catch (\Exception $e) {
             $data['joomId'] = 0;

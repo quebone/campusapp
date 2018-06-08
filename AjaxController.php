@@ -1,5 +1,6 @@
 <?php
 require_once "init.php";
+if (session_status() == PHP_SESSION_NONE) session_start();
 
 /**
  * Crida la funció del controlador segons les variables POST obtingudes

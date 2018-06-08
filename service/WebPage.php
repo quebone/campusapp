@@ -1,8 +1,7 @@
 <?php
 namespace Campusapp\Service;
 
-use Campusapp\DAO;
-use Campusapp\Service\Entities\User;
+use Campusapp\Service\Entities\Staff;
 
 /**
  * Modela una pàgina web
@@ -28,15 +27,19 @@ class WebPage
 	    $this->contents = file_get_contents($filename);
 	}
 	
-	public function addUserInfo($username) {
-		$dao = DAO::getInstance();
-		$user = $dao->getByFilter("User", ["username" => $username])[0];
-		$this->addNavUserInfo($user);
+	public function addUserInfo(string $email) {
+	    $ss = new StaffService();
+	    try {
+	        $user = $ss->getMemberByEmail($email);
+	        $this->addNavUserInfo($user);
+	    } catch (\Exception $e) {
+	        throw $e;
+	    }
 	}
 	
-	private function addNavUserInfo(User $user) {
+	private function addNavUserInfo(Staff $user) {
 		define("NAVUSER", '<span id="user"></span>');
-		$userInfo = $user->getNom() . " " . $user->getCognoms();
+		$userInfo = $user->getName() . " " . $user->getSurnames();
 		$this->contents = str_replace(NAVUSER, $userInfo, $this->contents);
 	}
 	

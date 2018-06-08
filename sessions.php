@@ -1,7 +1,12 @@
 <?php
+use Campusapp\Presentation\Controller\LoginController;
+
 if (session_status() == PHP_SESSION_NONE) session_start();
 
-if (!isset($_SESSION["session"])) {
-	header("Location: login.php");
-	die();
+$lc = new LoginController();
+try {
+    $lc->isLogged();
+} catch (Exception $e) {
+    header("Location: index.php");
+    die();
 }

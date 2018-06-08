@@ -12,16 +12,21 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['dni']) && isset($_P
             $data = $rc->getRegistration($_POST);
             $data['user']['dni'] = $_POST['dni'];
             $data['disabled'] = TRUE;
+            require_once 'navigation.php';
             $template = new \Transphporm\Builder(TPLDIR.'registration-data.html', TPLDIR.'registration-data.tss');
             $page->setContents($template->output($data)->body);
             break;
         case 1:  //save
             $rc->addRegistration($_POST);
-            $page->contentsFromFile(TPLDIR . 'registration-ok.html');
+            require_once 'navigation.php';
+            $template = new \Transphporm\Builder(TPLDIR.'registration-ok.html', TPLDIR.'registration-ok.tss');
+            $page->setContents($template->output($data)->body);
             break;
         case 2:  //delete
     }
 } else {
-    $page->contentsFromFile(TPLDIR . 'registration.html');
+    require_once 'navigation.php';
+    $template = new \Transphporm\Builder(TPLDIR.'registration.html', TPLDIR.'registration.tss');
+    $page->setContents($template->output($data)->body);
 }
 $page->show();

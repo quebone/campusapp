@@ -27,4 +27,27 @@ class Controller
         }
         return $post;
     }
+    
+    public function isLogged(): bool {
+        $lc = new LoginController();
+        try {
+            return $lc->isLogged();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+    
+    public function login(array $post): array {
+        $lc = new LoginController();
+        try {
+            return $lc->login($post);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+    
+    public function logout(): bool {
+        $lc = new LoginController();
+        return $lc->logout();
+    }
 }

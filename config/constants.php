@@ -6,6 +6,8 @@ define('MODELDIR', BASEDIR.'service/');
 define('ENTITIESDIR', MODELDIR.'entities/');
 define('FILESDIR', BASEDIR.'files/');
 define('LANGUAGESDIR', BASEDIR.'languages/');
+define('TMPDIR', 'tmp/');
+define('ACCREDITATIONSDIR', 'accreditations/');
 
 define('ENTITIESNS', 'Campusapp\\Service\\Entities\\');
 
