@@ -26,15 +26,15 @@ class Attendance implements IEntity
 	private $registration;
 	/** @ManyToOne(targetEntity="User") **/
 	private $user;
-	/** @ManyToMany(targetEntity="Meal") **/
-	private $meals;
+	/** @OneToMany(targetEntity="HasMeal", mappedBy="attendance", cascade={"all"}) **/
+	private $hasMeals;
 	
 	public function __construct() {
 	    $this->date = new \DateTime();
 	    $this->diet = DIET_NORMAL;
 	    $this->accommodation = ACCOMMODATION_SCHOOL;
 	    $this->role = CAMPUSI;
-	    $this->meals = new ArrayCollection();
+	    $this->hasMeals = new ArrayCollection();
 	}
 	
 	public function getId(): int {
@@ -89,28 +89,28 @@ class Attendance implements IEntity
 	    $this->user = $user;
 	}
 	
-	public function getMeals(): ?Selectable {
-	    return $this->meals;
+	public function getHasMeals(): ?Selectable {
+	    return $this->hasMeals;
 	}
 	
-	public function setMeals(Selectable $meals) {
-	    $this->meals = $meals;
+	public function setHasMeals(Selectable $hasMeals) {
+	    $this->hasMeals = $hasMeals;
 	}
 	
-	public function addMeal(Meal $meal): bool {
-	    if (!$this->meals->contains($meal)) {
-	        $this->meals->add($meal);
-	        return TRUE;
+	public function addHasMeal(HasMeal $hasMeal) {
+        $this->hasMeals->add($hasMeal);
+	}
+	
+	public function removeHasMeal(HasMeal $hasMeal) {
+        $this->hasMeals->removeElement($hasMeal);
+	}
+	
+	public function getMeals(): array {
+	    $meals = [];
+	    foreach ($this->hasMeals as $hasMeal) {
+	        $meals[] = $hasMeal->getMeal();
 	    }
-	    return FALSE;
-	}
-	
-	public function removeMeal(Meal $meal): bool {
-	    if ($this->meals->contains($meal)) {
-	        $this->meals->removeElement($meal);
-	        return TRUE;
-	    }
-	    return FALSE;
+	    return $meals;
 	}
 	
 	public function toArray(): array {

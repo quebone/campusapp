@@ -18,7 +18,7 @@ function toArgs($input): array {
 }
 
 function test01() {
-    $_POST = toArgs('email=carlescanellas@hotmail.com&function=deleteRegistration&caller=Registration');
+    $_POST = toArgs('name=Alba&surnames=Muntada Prat&email=albeta70@hotmail.es&role=3&accommodation=0&diet=0&thursdayDinner=true&fridayLunch=false&fridayDinner=true&saturdayLunch=false&saturdayDinner=false&sundayLunch=false&function=addAttendance&caller=Attendances');
     require_once 'AjaxController.php';
 }
 

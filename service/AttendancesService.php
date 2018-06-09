@@ -5,6 +5,7 @@ use Campusapp\Service\Entities\Attendance;
 use Campusapp\Service\Entities\User;
 use Campusapp\Service\Entities\Meal;
 use Campusapp\Exceptions\InstanceNotFoundException;
+use Campusapp\Service\Entities\HasMeal;
 
 class AttendancesService extends Service
 {
@@ -106,10 +107,37 @@ class AttendancesService extends Service
     
     private function setMeal(Attendance $attendance, Meal $meal, bool $value) {
         if ($value) {
-            $attendance->addMeal($meal);
+            $this->addMeal($attendance, $meal);
         } else {
-            $attendance->removeMeal($meal);
+            $this->removeMeal($attendance, $meal);
         }
+    }
+    
+    private function addMeal(Attendance $attendance, Meal $meal): bool {
+        $hasMeals = $attendance->getHasMeals();
+        foreach ($hasMeals as $hasMeal) {
+            if ($meal == $hasMeal->getMeal()) {
+                return FALSE;
+            }
+        }
+        $hasMeal = new HasMeal();
+        $hasMeal->setAttendance($attendance);
+        $hasMeal->setMeal($meal);
+        $this->dao->persist($hasMeal);
+        $attendance->addHasMeal($hasMeal);
+        return TRUE;
+    }
+    
+    private function removeMeal(Attendance $attendance, Meal $meal): bool {
+        $hasMeals = $attendance->getHasMeals();
+        foreach ($hasMeals as $hasMeal) {
+            if ($meal == $hasMeal->getMeal()) {
+                $attendance->removeHasMeal($hasMeal);
+                $this->dao->remove($hasMeal);
+                return TRUE;
+            }
+        }
+        return FALSE;
     }
     
     private function setThursdayDinner(Attendance $attendance, bool $value) {
