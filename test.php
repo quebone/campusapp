@@ -1,7 +1,5 @@
 <?php
 
-use Campusapp\Service\AccreditationsService;
-use Campusapp\Service\Entities\User;
 
 require_once 'init.php';
 
@@ -18,17 +16,9 @@ function toArgs($input): array {
 }
 
 function test01() {
-    $_POST = toArgs('name=Alba&surnames=Muntada Prat&email=albeta70@hotmail.es&role=3&accommodation=0&diet=0&thursdayDinner=true&fridayLunch=false&fridayDinner=true&saturdayLunch=false&saturdayDinner=false&sundayLunch=false&function=addAttendance&caller=Attendances');
+//     $_POST = toArgs('email=carlescanella@hotmail.com&function=register&caller=Meals');
+    $_POST = toArgs('function=existsCurrentMeal&caller=Meals');
     require_once 'AjaxController.php';
-}
-
-function test02() {
-    $as = new AccreditationsService();
-    $user = new User();
-    $user->setName('Carles');
-    $user->setSurnames('Canellas');
-    $user->setEmail('carlescanellas@hotmail.com');
-    $as->makeAccreditation($user);
 }
 
 test01();

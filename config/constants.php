@@ -65,6 +65,17 @@ define('DIET_NORMAL', 0);
 define('DIET_VEGETARIAN', 1);
 define('DIET_CELIAC', 2);
 
+const DIETS = [
+    DIET_NORMAL => 'Dieta-normal',
+    DIET_VEGETARIAN => 'Dieta-vegetariana',
+    DIET_CELIAC => 'Dieta-celíaca',
+];
+
 // turns
 define('LUNCH', 0);
 define('DINNER', 1);
+
+const TURNS = [
+    LUNCH => 'Dinar',
+    DINNER => 'Sopar',
+];

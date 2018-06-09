@@ -1,0 +1,6 @@
+@import 'navigation.tss';
+
+tbody tr {repeat: data(ingredients)};
+tbody tr:attr(id) {content: "id-", iteration(id) };
+tbody tr td:nth-child(1) {content: iteration(name) };
+tbody tr input:iteration[visible=true]:attr(checked) {content: true };

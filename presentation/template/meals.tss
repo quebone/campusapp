@@ -1,0 +1,13 @@
+@import 'navigation.tss';
+
+table {repeat: data(meals); }
+thead th:nth-child(1) {content: iteration(turn), " ", iteration(date) };
+thead th:nth-child(2) {content: iteration(total) };
+tbody tr.campusins td:nth-child(2) {content: iteration(Campusí) };
+tbody tr.staff td:nth-child(2) {content: iteration(Organització) };
+tbody tr.musicians td:nth-child(2) {content: iteration(Músic) };
+tbody tr.others td:nth-child(2) {content: iteration(Altres) };
+tbody tr.normal td:nth-child(2) {content: iteration(Dieta-normal) };
+tbody tr.vegetarian td:nth-child(2) {content: iteration(Dieta-vegetariana) };
+tbody tr.celiac td:nth-child(2) {content: iteration(Dieta-celíaca) };
+tbody tr.assisted td:nth-child(2) {content: iteration(assisted) };

@@ -44,6 +44,10 @@ function infoMessage(msg) {
 	alert(msg);
 }
 
+function promptMessage(msg, defaultValue="") {
+	return prompt(msg, defaultValue);
+}
+
 function confirmMessage(msg) {
 	return confirm(msg);
 }

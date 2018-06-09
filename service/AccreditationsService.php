@@ -97,8 +97,8 @@ class AccreditationsService extends Service
     }
     
     private function getQR(string $value) {
-        
-        $qr = imagecreatefrompng("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=$value&choe=UTF-8");
+        $text = "{email:$value}";
+        $qr = imagecreatefrompng("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=$text&choe=UTF-8");
         return $qr;
     }
     
