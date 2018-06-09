@@ -15,7 +15,7 @@ class AttendancesService extends Service
     public function getCurrentAttendants(): array {
         $data = [];
         try {
-            $attendances = $this->getCurrentAttendances();
+            $attendances = $this->getCurrentAttendancesWithRegistration();
             foreach ($attendances as $attendance)
                 $data[] = $attendance->getUser();
             return $data;
@@ -24,11 +24,11 @@ class AttendancesService extends Service
         }
     }
 
-    public function getCurrentAttendances(): array {
+    public function getCurrentAttendancesWithRegistration(): array {
         try {
             $attendances = $this->dao->getByFilter("Attendance");
             foreach ($attendances as $key => $attendance) {
-                if (!$this->isCurrent($attendance)) unset($attendances[$key]);
+                if (!$this->isCurrent($attendance) || $attendance->getRegistration() != null) unset($attendances[$key]);
             }
             return $attendances;
         } catch (\Exception $e) {
@@ -45,13 +45,25 @@ class AttendancesService extends Service
         return NULL;
     }
     
-    private function isCurrent(Attendance $attendance): bool {
+    public function userHasCurrentRegistration(string $email): bool {
+        $us = new UserService();
+        try {
+            $user = $us->getUserByEmail($email);
+            $attendance = $this->getCurrentAttendance($user);
+            if ($attendance == NULL) return FALSE;
+            return ($attendance->getRegistration() != NULL);
+        } catch (\Exception $e) {
+            return FALSE;
+        }
+    }
+    
+    public function isCurrent(Attendance $attendance): bool {
         return !strcmp($attendance->getDate()->format('Y'), date('Y'));
     }
     
     public function addAttendance(User $user, int $diet, int $accommodation, bool $thursdayDinner,
             bool $fridayLunch, bool $fridayDinner, bool $saturdayLunch, bool $saturdayDinner,
-            bool $sundayLunch): Attendance {
+            bool $sundayLunch, int $role): Attendance {
         $attendance = $this->getCurrentAttendance($user);
         if ($attendance == NULL) {
             $attendance = new Attendance();
@@ -61,6 +73,7 @@ class AttendancesService extends Service
         }
         $attendance->setDiet($diet);
         $attendance->setAccommodation($accommodation);
+        $attendance->setRole($role);
         $this->setThursdayDinner($attendance, $thursdayDinner);
         $this->setFridayLunch($attendance, $fridayLunch);
         $this->setFridayDinner($attendance, $fridayDinner);

@@ -20,6 +20,8 @@ class Attendance implements IEntity
 	private $diet;
 	/** @Column(type="integer") **/
 	private $accommodation;
+	/** @Column(type="integer", nullable=true) **/
+	private $role;
 	/** @OneToOne(targetEntity="Registration") **/
 	private $registration;
 	/** @ManyToOne(targetEntity="User") **/
@@ -31,6 +33,7 @@ class Attendance implements IEntity
 	    $this->date = new \DateTime();
 	    $this->diet = DIET_NORMAL;
 	    $this->accommodation = ACCOMMODATION_SCHOOL;
+	    $this->role = CAMPUSI;
 	    $this->meals = new ArrayCollection();
 	}
 	
@@ -60,6 +63,14 @@ class Attendance implements IEntity
 	
 	public function setAccommodation(int $accommodation) {
 	    $this->accommodation = $accommodation;
+	}
+	
+	public function getRole(): int {
+	    return $this->role;
+	}
+	
+	public function setRole(int $role) {
+	    $this->role = $role;
 	}
 	
 	public function getRegistration(): ?Registration {
@@ -108,6 +119,7 @@ class Attendance implements IEntity
 		    "date" => $this->date->format('Y-m-d'),
 		    "diet" => $this->diet,
 		    "accommodation" => $this->accommodation,
+		    'role' => $this->role,
 		];
 	}
 	

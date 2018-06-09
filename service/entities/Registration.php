@@ -25,6 +25,8 @@ class Registration implements IEntity
 	private $imageRights;
 	/** @Column(type="boolean") **/
 	private $musicalKnowledge;
+	/** @Column(type="string", length=255, nullable=true) **/
+	private $observations;
 	
 	public function __construct() {
 	   $this->firstYearInCampus = FALSE;
@@ -34,6 +36,7 @@ class Registration implements IEntity
 	   $this->emailSpread = FALSE;
 	   $this->imageRights = FALSE;
 	   $this->musicalKnowledge = FALSE;
+	   $this->observations = "";
 	}
 	
 	public function getId(): int {
@@ -96,6 +99,14 @@ class Registration implements IEntity
 	    $this->musicalKnowledge = $musicalKnowledge;
 	}
 	
+	public function getObservations(): ?string {
+	    return $this->observations;
+	}
+	
+	public function setObservations(?string $observations) {
+	    $this->observations = $observations;
+	}
+	
 	public function toArray(): array {
 		return [
 		    "id" => $this->id,
@@ -106,6 +117,7 @@ class Registration implements IEntity
 		    'emailSpread' => $this->emailSpread,
 		    'imageRights' => $this->imageRights,
 		    'musicalKnowledge' => $this->musicalKnowledge,
+		    'observations' => $this->observations,
 		];
 	}
 	

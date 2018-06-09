@@ -214,6 +214,13 @@
             </div>
             
             <hr class="mb-4">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="observations">Observacions</label>
+	            	<textarea class="form-control d-block w-100" id="observations" name="observations" rows="3"></textarea>
+              </div>
+            </div>
+
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" name="emailSpread" id="emailSpread">
               <label class="custom-control-label" for="emailSpread">Accepto la difusió de l'adreça de correu entre els participants del campus</label>
@@ -222,7 +229,7 @@
               <input type="checkbox" class="custom-control-input" name="imageRights" id="imageRights">
               <label class="custom-control-label" for="imageRights">Accepto els drets d'imatge i vídeo (cedeixo la meva imatge perquè pugui ser publicada)</label>
             </div>
-
+            
             <div class="mb-4"></div>
             <div class="row">
               <div class="col-md-12 mb-3">
@@ -231,6 +238,8 @@
             </div>
 <!--            0 => go to data / 1 => modify data / 2 => delete-->
             <input type="text" id="option" name="option" value="1" hidden="" />
+<!--            role-->
+            <input type="text" id="role" name="role" value="1" hidden="" />
           </form>
           <div class="row">
               <div class="col-md-6 mb-3">

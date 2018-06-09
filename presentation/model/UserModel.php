@@ -3,6 +3,7 @@ namespace Campusapp\Presentation\Model;
 
 use Campusapp\Service\Entities\User;
 use Campusapp\Service\UserService;
+use Campusapp\Service\AttendancesService;
 
 class UserModel extends Model
 {
@@ -52,6 +53,12 @@ class UserModel extends Model
     
     public function getUserData(User $user): array {
         $data = $user->toArray();
+        $as = new AttendancesService();
+        $currentAttendance = $as->getCurrentAttendance($user);
+        if ($currentAttendance != NULL) {
+            $data['role'] = $currentAttendance->getRole();
+            $data['roleName'] = ROLES[$data['role']];
+        }
         $us = new UserService();
         try {
             $data['joomId'] = $us->getJoomlaUserByEmail($user->getEmail())['id'];

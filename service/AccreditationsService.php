@@ -1,48 +1,69 @@
 <?php
 namespace Campusapp\Service;
 
+require_once __DIR__ . '/../vendor/fpdf181/fpdf.php';
+
 use Campusapp\Service\Entities\User;
 
 class AccreditationsService extends Service
 {
-    private $res = 300;
+    private $res = 150;
+    private $resApplied = FALSE;
     private $font = 'fonts/PoplarStd.otf';
     private $measures = [
-        'width' => 5.9 * 300,
-        'height' => 9.5 * 300,
-        'editionLeft' => 0.75 * 300,
-        'editionTop' => 4.0 * 300,
-        'qrLeft' => 2.9 * 300,
-        'qrTop' => 1.9 * 300,
-        'qrSize' => 2.4 * 300,
-        'title1Left' => 0.75 * 300,
-        'title1Top' => 5.2 * 300,
-        'title2Left' => 0.75 * 300,
-        'title2Top' => 6.2 * 300,
-        'bandTop' => 6.75 * 300,
-        'bandHeight' => 1.0 * 300,
-        'nameTop' => 7.75 * 300,
-        'nameWidth' => 5.0 * 300,
-        'roleTop' => 8.9 * 300,
+        'width' => 5.9,
+        'height' => 9.5,
+        'editionLeft' => 0.75,
+        'editionTop' => 4.0,
+        'qrLeft' => 2.9,
+        'qrTop' => 1.9,
+        'qrSize' => 2.4,
+        'title1Left' => 0.75,
+        'title1Top' => 5.2,
+        'title2Left' => 0.75,
+        'title2Top' => 6.2,
+        'bandTop' => 6.75,
+        'bandHeight' => 1.0,
+        'nameTop' => 7.75,
+        'nameWidth' => 5.0,
+        'roleTop' => 8.9,
     ];
     
     private $fontSizes = [
-        'edition' => 550.0,
-        'title1' => 160.0,
-        'title2' => 170.0,
-        'role' => 200.0,
+        'edition' => 1.87,
+        'title1' => 0.53,
+        'title2' => 0.57,
+        'role' => 0.8,
     ];
     
     public function __construct() {
         parent::__construct();
+        $this->applyResolution();
     }
     
-    public function makeAccreditation(User $user): bool {
+    public function getImageWidth(): float {
+        return $this->measures['width'] / ($this->resApplied ? $this->res : 1);
+    }
+    
+    public function getImageHeight(): float {
+        return $this->measures['height'] / ($this->resApplied ? $this->res : 1);
+    }
+    
+    private function applyResolution() {
+        foreach ($this->measures as $key=>$value)
+            $this->measures[$key] = $value * $this->res;
+        foreach ($this->fontSizes as $key=>$value)
+            $this->fontSizes[$key] = $value * $this->res;
+        $this->resApplied = TRUE;
+    }
+    
+    public function makeAccreditation(User $user): string {
         $im = @imagecreatetruecolor($this->measures['width'], $this->measures['height']);
         $white = imagecolorallocate($im, 255, 255, 255);
         $black = imagecolorallocate($im, 0, 0, 0);
         $grey = imagecolorallocate($im, 128, 128, 128);
         imagefill($im, 0, 0, $white);
+        imagerectangle($im, 0, 0, $this->measures['width']-1, $this->measures['height']-1, $black);
         $qr = $this->getQR($user->getEmail());
         imagecopyresampled($im, $qr, $this->measures['qrLeft'], $this->measures['qrTop'], 0, 0, $this->measures['qrSize'], $this->measures['qrSize'], 500, 500);
         $edition = $this->getCurrentEdition();
@@ -60,12 +81,15 @@ class AccreditationsService extends Service
         $posBottom = $this->posBottom($this->measures['bandHeight'], $fontSize, $name);
         imagettftext($im, $fontSize, 0, $this->posLeft($fontSize, $name),
             $this->measures['nameTop'] - $posBottom, $white, $this->font, $name);
-        $role = strtoupper('organització');
+        $as = new AttendancesService();
+        $attendance = $as->getCurrentAttendance($user);
+        $role = (ROLES[$attendance->getRole()]);
         imagettftext($im, $this->fontSizes['role'], 0, $this->posLeft($this->fontSizes['role'], $role),
             $this->measures['roleTop'], $black, $this->font, $role);
-        imagepng($im, TMPDIR.'accreditation.png');
+        $fileName = TMPDIR.$user->getEmail().'.png';
+        imagepng($im, $fileName);
         imagedestroy($im);
-        return TRUE;
+        return $fileName;
     }
     
     private function getCurrentEdition(): int {
@@ -90,7 +114,8 @@ class AccreditationsService extends Service
         return $posBottom;
     }
     
-    private function optimizeFontSize(string $text, float $width, float $maxSize=170.0): float {
+    private function optimizeFontSize(string $text, float $width, float $maxSize=0.56): float {
+        $maxSize *= $this->res;
         $box = imageftbbox(100, 0, $this->font, $text);
         $boxWidth = $box[2] - $box[0];
         $fontSize = 100 * $width / $boxWidth;

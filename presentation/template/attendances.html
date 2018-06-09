@@ -7,21 +7,34 @@
   <!-- Begin page content -->
   <main role="main" class="container">
 	  <div class="py-2"></div>
+    <button class="btn btn-primary btn-lg btn-block" onclick="addAttendance()">Afegir assistència</button>
+	  <div class="py-2"></div>
 		<div class="container">
       <div class="row">
-        <div class="col-md-10 order-md-1">
+        <div class="col-md-12 order-md-1">
 		      <h4 class="mb-3">Assistents al Campus</h4>
 		      <div class="row">
 		      	<div class="col-md-12 mb-3">
 		      		<table class="table">
-		      			<thead><th scope="col">Nom</th>
+		      			<thead>
+	      					<th scope="col"><input type="checkbox" id="toggleAll" onchange="checkAllToggle(event)" /></th>
+	      					<th scope="col">
+	      						<i class="material-icons link" title="Imprimir acreditacions seleccionades" onclick="printAccreditations()">print</i>
+	      					</th>
+		      				<th scope="col">Nom</th>
 		      				<th scope="col">Correu electrònic</th>
+		      				<th scope="col">Rol</th>
 		      				<th scope="col"></th>
 		      			</thead>
 		      			<tbody>
 		      				<tr id="id-1006">
+		      					<td><input type="checkbox" onchange="checkToggle(event)" /></td>
+		      					<td>
+		      						<i class="material-icons link" title="Imprimir acreditació" onclick="printAccreditation(this)">print</i>
+		      					</td>
 		      					<td>Carles Canellas Crusellas</td>
 		      					<td>carlescanellas@hotmail.com</td>
+		      					<td>rol</td>
 		      					<td>
 		      						<i class="material-icons link" title="editar" onclick="editAttendance(event)">edit</i>
 		      						<i class="material-icons link" title="eliminar" onclick="deleteAttendance(event)">delete</i>
@@ -32,7 +45,6 @@
     				</div>
 		      </div>
           <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" onclick="addAttendance()">Afegir assistència</button>
         </div>
       </div>	
 	  </div>
@@ -75,7 +87,20 @@
 	            <div class="row">
 	              <div class="col-md-6 mb-3">
 	                <label for="accomodation">Allotjament</label>
-	                <select class="custom-select d-block w-100" id="accommodation" name="accommodation" required=""><option value="0" selected="">Escoles</option><option value="1">Zona d'acampada</option><option value="2">Altres</option></select></div>
+	                <select class="custom-select d-block w-100" id="accommodation" name="accommodation" required="">
+	                	<option value="0" selected="">Escoles</option>
+	                	<option value="1">Zona d'acampada</option>
+	                	<option value="2">Altres</option>
+                	</select>
+              	</div>
+	              <div class="col-md-6 mb-3">
+	                <label for="role">Rol</label>
+	                <select class="custom-select d-block w-100" id="role" name="role" required="">
+	                	<option value="3" selected="">Organització</option>
+	                	<option value="4">Músic</option>
+	                	<option value="5">Altres</option>
+                	</select>
+              	</div>
 	            </div>
 		
 	            <h4 class="mt-3 mb-3">Àpats</h4>
@@ -165,5 +190,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>
 <script src="js/attendances.js"></script>
+<script src="js/accreditations.js"></script>
 </body>
 </html>

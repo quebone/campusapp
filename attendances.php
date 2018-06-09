@@ -5,10 +5,10 @@ use Campusapp\Presentation\Controller\AttendancesController;
 require_once 'init.php';
 require_once 'sessions.php';
 
-$ac = new AttendancesController();
+$rc = new AttendancesController();
 $data = [];
-$data['attendants'] = $ac->getAttendants();
-$data['members'] = $ac->getEgsMembers();
+$data['attendants'] = $rc->getAttendants();
+$data['members'] = $rc->getEgsMembers();
 require_once 'navigation.php';
 
 $template = new \Transphporm\Builder(TPLDIR.'attendances.html', TPLDIR.'attendances.tss');

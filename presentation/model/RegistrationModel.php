@@ -3,7 +3,7 @@ namespace Campusapp\Presentation\Model;
 
 use Campusapp\Service\Entities\Registration;
 
-class RegistrationsModel extends Model
+class RegistrationModel extends Model
 {
     public function __construct() {
         parent::__construct();

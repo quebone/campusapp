@@ -8,8 +8,8 @@ if (session_status() == PHP_SESSION_NONE) session_start();
 
 if (isset($_POST['function']) && isset($_POST['caller'])) {
 	$controller = $_POST['caller'] . "Controller";
-	$ac = new AjaxController($controller);
-	$ac->loadFunction($_POST['function'], $_POST);
+	$rc = new AjaxController($controller);
+	$rc->loadFunction($_POST['function'], $_POST);
 }
 
 class AjaxController

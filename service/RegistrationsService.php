@@ -1,71 +1,29 @@
 <?php
 namespace Campusapp\Service;
 
-use Campusapp\Exceptions\InstanceNotFoundException;
-use Campusapp\Service\Entities\Registration;
-use Campusapp\Service\Entities\Attendance;
-
 class RegistrationsService extends Service
 {
     public function __construct() {
         parent::__construct();
     }
     
-    public function getRegisteredUser(string $email, string $dni) {
-        $us = new UserService();
-        try {
-            $user = $us->getUserByEmailAndDni($email, $dni);
-        } catch (InstanceNotFoundException $e) {
-            try {
-                $user = $us->getUserByEmail($email);
-            } catch (InstanceNotFoundException $e) {
-                $user = $us->addUser(['email'=>$email, 'dni'=>$dni]);
-            }
+    public function getCurrentRegistered(): array {
+        $attendances = $this->getCurrentAttendances();
+        $data = [];
+        foreach ($attendances as $attendance) {
+            $data[] = $attendance->getUser();
         }
-        return $user;
+        return $data;
     }
     
-    public function getRegistration(string $email, string $dni) {
-        
-    }
-    
-    public function addRegistration(Attendance $attendance, bool $firstYearInCampus,
-            int $arrivalDay, int $arrivalTime, int $registrationType, bool $emailSpread,
-            bool $imageRights, bool $musicalKnowledge): Registration {
-        $registration = $attendance->getRegistration();
-        if ($registration == NULL) {
-            $registration = new Registration();
-            $this->dao->persist($registration);
-            $attendance->setRegistration($registration);
-        }
-        $registration->setFirstYearInCampus($firstYearInCampus);
-        $registration->setArrivalDay($arrivalDay);
-        $registration->setArrivalTime($arrivalTime);
-        $registration->setRegistrationType($registrationType);
-        $registration->setEmailSpread($emailSpread);
-        $registration->setImageRights($imageRights);
-        $registration->setMusicalKnowledge($musicalKnowledge);
-        try {
-            $this->dao->flush();
-            return $registration;
-        } catch (\Exception $e) {
-            throw $e;
-        }
-    }
-    
-    public function deleteRegistration(string $email) {
-        $us = new UserService();
-        $user = $us->getUserByEmail($email);
+    public function getCurrentAttendances(): array {
         $as = new AttendancesService();
-        $attendance = $as->getCurrentAttendance($user);
-        $user->removeAttendance($attendance);
-        $this->dao->remove($attendance);
-        //si no té cap més assistència, podem eliminar l'usuari
-        if (count($user->getAttendances()) == 0) {
-            $this->dao->remove($user);
-        }
         try {
-            $this->dao->flush();
+            $attendances = $this->dao->getByFilter("Attendance");
+            foreach ($attendances as $key => $attendance) {
+                if (!$as->isCurrent($attendance) || $attendance->getRegistration() == null) unset($attendances[$key]);
+            }
+            return $attendances;
         } catch (\Exception $e) {
             throw $e;
         }

@@ -18,7 +18,7 @@ function toArgs($input): array {
 }
 
 function test01() {
-    $_POST = toArgs('email=carlescanellas@hotmail.com&password=campusgospel&function=login&caller=Index');
+    $_POST = toArgs('email=carlescanellas@hotmail.com&function=deleteRegistration&caller=Registration');
     require_once 'AjaxController.php';
 }
 
@@ -31,4 +31,4 @@ function test02() {
     $as->makeAccreditation($user);
 }
 
-test02();
+test01();

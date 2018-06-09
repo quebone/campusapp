@@ -8,6 +8,7 @@ function initForm() {
 	setElemValue(document.getElementById('saturdayDinner'), false);
 	setElemValue(document.getElementById('sundayLunch'), false);
 	setElemValue(document.getElementById('diet'), 0);
+	setElemValue(document.getElementById('role'), 3);
 }
 
 function initEgsData() {
@@ -69,6 +70,7 @@ function saveAttendance() {
 		var name = getElemValue(document.getElementById('name'));
 		var surnames = getElemValue(document.getElementById('surnames'));
 		var email = getElemValue(document.getElementById('email'));
+		var role = getElemValue(document.getElementById('role'));
 		var accommodation = getElemValue(document.getElementById('accommodation'));
 		var thursdayDinner = getElemValue(document.getElementById('thursdayDinner'));
 		var fridayLunch = getElemValue(document.getElementById('fridayLunch'));
@@ -77,10 +79,9 @@ function saveAttendance() {
 		var saturdayDinner = getElemValue(document.getElementById('saturdayDinner'));
 		var sundayLunch = getElemValue(document.getElementById('sundayLunch'));
 		var diet = getElemValue(document.getElementById('diet'));
-		var dataToSend = "name=" + name + "&surnames=" + surnames + "&email=" + email + "&accommodation=" + accommodation + "&diet=" + diet +
-			"&thursdayDinner=" + thursdayDinner + "&fridayLunch=" + fridayLunch +
-			"&fridayDinner=" + fridayDinner + "&saturdayLunch=" + saturdayLunch + "&saturdayDinner=" + saturdayDinner + "&sundayLunch=" + sundayLunch +
-			"&function=addAttendance";
+		var dataToSend = "name=" + name + "&surnames=" + surnames + "&email=" + email + "&role=" + role + "&accommodation=" + accommodation + "&diet=" + diet +
+			"&thursdayDinner=" + thursdayDinner + "&fridayLunch=" + fridayLunch + "&fridayDinner=" + fridayDinner + "&saturdayLunch=" + saturdayLunch + 
+			"&saturdayDinner=" + saturdayDinner + "&sundayLunch=" + sundayLunch + "&function=addAttendance";
 		send(dataToSend, AJAXCONTROLLER, saveAttendanceReturn);
 	}
 }
@@ -114,6 +115,7 @@ function getAttendanceReturn(msg) {
 		var email = document.getElementById('email');
 		setElemValue(email, msg[1].user.email);
 		email.setAttribute("disabled", "");
+		setElemValue(document.getElementById('role'), msg[1].attendance.role);
 		setElemValue(document.getElementById('accommodation'), msg[1].attendance.accommodation);
 		setElemValue(document.getElementById('thursdayDinner'), msg[1].attendance.thursdayDinner);
 		setElemValue(document.getElementById('fridayLunch'), msg[1].attendance.fridayLunch);

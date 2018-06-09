@@ -126,3 +126,27 @@ function validateEmail(email) {
     return re.test(email);
 }
 
+function checkAllToggle(event) {
+	var table = getElementContainer(event.target, 'table');
+	var checks = table.querySelectorAll('tbody input[type=checkbox]');
+	for (var i=0; i<checks.length; i++) {
+		checks[i].checked = event.target.checked;
+	}
+}
+
+function checkToggle(event) {
+	var toggleAll = document.getElementById('toggleAll');
+	if (event.target.checked) {
+		var table = getElementContainer(event.target, 'table');
+		var checks = table.querySelectorAll('tbody input[type=checkbox]');
+		for (var i=0; i<checks.length; i++) {
+			if (!checks[i].checked) {
+				toggleAll.checked = false;
+				return;
+			}
+			toggleAll.checked = true;
+		}
+	} else {
+		toggleAll.checked = false;
+	}		
+} 

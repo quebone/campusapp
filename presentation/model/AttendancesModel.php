@@ -11,6 +11,7 @@ class AttendancesModel extends Model
     
     public function getAttendanceData(Attendance $attendance): array {
         $data = $attendance->toArray();
+        $data['roleName'] = ROLES[$attendance->getRole()];
         $data['thursdayDinner'] = FALSE;
         $data['fridayLunch'] = FALSE;
         $data['fridayDinner'] = FALSE;

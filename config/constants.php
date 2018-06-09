@@ -24,10 +24,17 @@ define('CAMPUSI', 1);
 define('EGS', 2);
 define('STAFF', 3);
 define('MUSICIAN', 4);
+define('OTHERS', 5);
 define('MANAGER', 6);
 define('ADMINISTRATOR', 7);
 
 const ROLES = [
+    CAMPUSI => 'Campusí',
+    EGS => 'Esclat',
+    STAFF => 'Organització',
+    MUSICIAN => 'Músic',
+    OTHERS => 'Altres',
+    MANAGER => 'Gestor',
     ADMINISTRATOR => 'Administrador',
 ];
 

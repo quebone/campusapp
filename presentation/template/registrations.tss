@@ -1,0 +1,6 @@
+@import 'navigation.tss';
+
+tbody tr {repeat: data(registered)};
+tbody tr:attr(id) {content: "id-", iteration(id) };
+tbody tr td:nth-child(3) {content: iteration(name), " ", iteration(surnames) };
+tbody tr td:nth-child(4) {content: iteration(email) };

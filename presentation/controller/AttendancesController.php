@@ -6,6 +6,7 @@ use Campusapp\Service\AttendancesService;
 use Campusapp\Presentation\Model\UserModel;
 use Campusapp\Service\UserService;
 use Campusapp\Service\Entities\Attendance;
+use Campusapp\Exceptions\UserHasRegistrationException;
 
 class AttendancesController extends Controller
 {
@@ -56,14 +57,16 @@ class AttendancesController extends Controller
         }
     }
     
-    public function addAttendance($post): Attendance {
+    public function addAttendance($post, $errorIfRegistered = TRUE): Attendance {
         $post = $this->normalize($post);
         $us = new UserService();
+        if ($this->as->userHasCurrentRegistration($post['email']) && $errorIfRegistered)
+            throw new UserHasRegistrationException();
         $user = $us->addUser($post);
         try {
             $attendance = $this->as->addAttendance($user, $post['diet'], $post['accommodation'], $post['thursdayDinner'],
                 $post['fridayLunch'], $post['fridayDinner'], $post['saturdayLunch'], $post['saturdayDinner'],
-                $post['sundayLunch']);
+                $post['sundayLunch'], $post['role']);
             return $attendance;
         } catch (\Exception $e) {
             throw $e;

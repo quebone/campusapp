@@ -50,4 +50,9 @@ class Controller
         $lc = new LoginController();
         return $lc->logout();
     }
+    
+    public function printAccreditations(array $post): bool {
+        $ac = new AccreditationsController();
+        return $ac->printAccreditations($post);
+    }
 }
