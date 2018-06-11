@@ -27,6 +27,15 @@ class UserService extends Service
         return $members;
     }
     
+    public function getJoomlaUserById(int $id): array {
+        $db = \JFactory::getDBO();
+        $query = "SELECT * FROM #__users WHERE id=$id AND block=0" ;
+        $db->setQuery($query);
+        $row = $db->loadAssoc();
+        if ($row != NULL) return $row;
+        throw new InstanceNotFoundException();
+    }
+    
     public function getJoomlaUserByEmail(string $email): array {
         $db = \JFactory::getDBO();
         $query = "SELECT * FROM #__users WHERE email='$email' AND block=0" ;
@@ -36,13 +45,14 @@ class UserService extends Service
         throw new InstanceNotFoundException();
     }
 
-    public function getJoomlaUserById(int $id): array {
-        $db = \JFactory::getDBO();
-        $query = "SELECT * FROM #__users WHERE id=$id AND block=0" ;
-        $db->setQuery($query);
-        $row = $db->loadAssoc();
-        if ($row != NULL) return $row;
-        throw new InstanceNotFoundException();
+    public function getJoomlaUserByEmailAndPassword(string $email, string $password): array {
+        try {
+            $user = $this->getJoomlaUserByEmail($email);
+            if (password_verify($password, $user['password'])) return $user;
+            throw new InstanceNotFoundException();
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
     
     public function getUserById(int $id): User {

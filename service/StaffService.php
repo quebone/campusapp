@@ -36,6 +36,16 @@ class StaffService extends Service
         }
     }
     
+    public function getMemberByEmailAndPassword(string $email, string $password): Staff {
+        try {
+            $member = $this->getMemberByEmail($email);
+            if (password_verify($password, $member->getPassword())) return $member;
+            throw new InstanceNotFoundException();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+    
     public function addStaff(string $name, string $surnames, string $email, string $password): Staff {
         try {
             $members = $this->dao->getByFilter("Staff", ['email'=>$email]);

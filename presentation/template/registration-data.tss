@@ -41,4 +41,5 @@
 #diet option:nth-child(3):data[attendance.diet=2]:attr(selected) {content: "" }
 #emailSpread:data[registration.emailSpread=true]:attr(checked) {content: ""; }
 #imageRights:data[registration.imageRights=true]:attr(checked) {content: ""; }
+#privacy:data[user.privacy=true]:attr(checked) {content: ""; }
 #observations {content: data(registration.observations); }

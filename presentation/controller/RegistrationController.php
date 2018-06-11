@@ -22,7 +22,7 @@ class RegistrationController extends Controller
     private function fillBooleanEmptyFields(array $post): array {
         $booleanFields = [
             'firstYearInCampus', 'musicalKnowledge', 'thursdayDinner', 'fridayLunch', 'fridayDinner',
-            'saturdayLunch', 'saturdayDinner', 'sundayLunch', 'emailSpread', 'imageRights',
+            'saturdayLunch', 'saturdayDinner', 'sundayLunch', 'emailSpread', 'imageRights', 'privacy',
         ];
         foreach ($booleanFields as $booleanField) {
             if (!isset($post[$booleanField])) $post[$booleanField] = FALSE;

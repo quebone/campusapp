@@ -36,6 +36,8 @@ class User implements IEntity
     private $postalCode;
     /** @Column(type="string", length=9, nullable=true) **/
     private $dni;
+    /** @Column(type="boolean") **/
+    private $privacy;
     /** @OneToMany(targetEntity="Attendance", mappedBy="user") **/
     private $attendances;
     
@@ -49,6 +51,7 @@ class User implements IEntity
         $this->city = "";
         $this->postalCode = "";
         $this->dni = "";
+        $this->privacy = FALSE;
         $this->attendances = new ArrayCollection();
     }
     
@@ -149,6 +152,14 @@ class User implements IEntity
         $this->dni = $dni;
     }
     
+    public function getPrivacy(): bool {
+        return $this->privacy;
+    }
+    
+    public function setPrivacy(bool $privacy) {
+        $this->privacy = $privacy;
+    }
+    
     public function getAttendances(): ?Selectable {
         return $this->attendances;
     }
@@ -186,6 +197,7 @@ class User implements IEntity
             'city' => $this->city,
             'postalCode' => $this->postalCode,
             'dni' => $this->dni,
+            'privacy' => $this->privacy,
         ];
     }
 
