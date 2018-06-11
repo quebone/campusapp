@@ -18,20 +18,20 @@ define("LOCAL", true);
 // local
 if (defined("LOCAL")) {
 	$dbParams = array(
-			'driver'   => 'pdo_mysql',
-			'user'     => 'carles',
-			'password' => 'litus',
-			'dbname'   => 'esclatgospelsingers_campus',
-			'charset' => 'utf8',
+	    'driver'   => 'pdo_mysql',
+	    'user'     => 'carles',
+	    'password' => 'litus',
+	    'dbname'   => 'esclatgospelsingers_campus',
+	    'charset' => 'utf8',
 	);
 } else {
 	// remote
 	$dbParams = array(
-			'driver'   => 'pdo_mysql',
-			'user'     => 'carles',
-			'password' => '19liTus71',
-			'dbname'   => 'represaliats',
-			'charset' => 'utf8',
+	    'driver'   => 'pdo_mysql',
+	    'user'     => 'carles',
+	    'password' => 'YT52qjf01w',
+	    'dbname'   => 'esclatgo_campus',
+	    'charset' => 'utf8',
 	);
 }
 
