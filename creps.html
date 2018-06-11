@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+	<meta charset="utf-8" />
+	<title>Creps</title>
+	<meta name="description" content="Comandes de creps" />
+	<meta name="author" content="Carles Canellas" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link rel="stylesheet" href="css/styles.css?v=1.0" />
+	<link rel="stylesheet" href="css/creps.css?v=1.0" />
+</head>
+<body>
+  <!-- Begin page content -->
+  <main role="main" class="container">
+  <div class="toggle-served">
+  	<input type="checkbox" id="toggleServed" onclick="toggleServed(this)" checked="" />
+  	<label for="toggleServed">Amagar comandes servides</label>
+  </div>
+  	<table>
+  		<tbody>
+  			<tr class="template">
+  				<td class="col-order">1</td>
+  				<td class="col-ingredients link" onclick="done(event)"></td>
+  				<td class="col-warned link" onclick="warn(event)"></td>
+  				<td class="col-served link" onclick="serve(event)"></td>
+  			</tr>
+  		</tbody>
+  	</table>
+  
+  </main>
+	
+<script src="js/scripts.js"></script>
+<script src="js/creps.js"></script>
+</body>
+</html>

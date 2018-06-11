@@ -1,0 +1,58 @@
+body {
+	margin: 0;
+	background-color: black;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 2rem;
+	font-weight: bold;
+	color: white;
+}
+
+.toggle-served {
+	text-align: center;
+	color: white;
+	font-size: 1rem;
+	font-weight: normal;
+}
+
+table {
+	width: 100%;
+}
+
+tr {
+	height: 50px;
+}
+
+tr.template {
+	display: none;
+}
+
+td {
+	padding: 1rem;
+	min-width: 3rem;
+}
+
+td.col-order {
+	text-align: center;
+}
+
+.pending {
+	background: linear-gradient(red, darkred);
+}
+
+.ready {
+	background: linear-gradient(blue, darkblue);
+}
+
+.done {
+	background: linear-gradient(green, darkgreen);
+}
+
+.disabled {
+	background: linear-gradient(lightgray, gray);
+	cursor: default;
+}
+
+.warning {
+	background: linear-gradient(lightyellow, yellow);
+}
+

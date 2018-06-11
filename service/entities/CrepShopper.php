@@ -18,8 +18,11 @@ class CrepShopper implements IEntity
     private $regToken;
     /** @OneToMany(targetEntity="Order", mappedBy="crepShopper") **/
     private $orders;
+    /** @OneToOne(targetEntity="User") **/
+    private $user;
     
     public function __construct() {
+        $this->user = NULL;
         $this->orders = new ArrayCollection();
     }
     
@@ -41,6 +44,14 @@ class CrepShopper implements IEntity
     
     public function setOrders(Selectable $orders) {
         $this->orders = $orders;
+    }
+    
+    public function getUser(): ?User {
+        return $this->user;
+    }
+    
+    public function setuser(?User $user) {
+        $this->user = $user;
     }
     
     public function toArray(): array {

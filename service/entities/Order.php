@@ -14,8 +14,12 @@ class Order implements IEntity
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
     private $id;
+    /** @Column(type="date") **/
+    private $date;
     /** @Column(type="boolean") **/
     private $done;
+    /** @Column(type="boolean") **/
+    private $warned;
     /** @Column(type="boolean") **/
     private $served;
     /** @ManyToOne(targetEntity="CrepShopper", inversedBy="orders") **/
@@ -25,6 +29,10 @@ class Order implements IEntity
     
     public function __construct() {
         $this->ingredients = new ArrayCollection();
+        $this->date = new \DateTime();
+        $this->done = FALSE;
+        $this->warned = FALSE;
+        $this->served = FALSE;
     }
     
     public function getId(): int {
@@ -37,6 +45,14 @@ class Order implements IEntity
     
     public function setDone(bool $done) {
         $this->done = $done;
+    }
+    
+    public function getWarned(): bool {
+        return $this->warned;
+    }
+    
+    public function setWarned(bool $warned) {
+        $this->warned = $warned;
     }
     
     public function getServed(): bool {
@@ -63,10 +79,19 @@ class Order implements IEntity
         $this->ingredients = $ingredients;
     }
     
+    public function addIngredient(Ingredient $ingredient) {
+        $this->ingredients->add($ingredient);
+    }
+    
+    public function removeIngredient(Ingredient $ingredient) {
+        $this->ingredients->removeElement($ingredient);
+    }
+    
     public function toArray(): array {
         return [
             'id' => $this->id,
             'done' => $this->done,
+            'warned' => $this->warned,
             'served' => $this->served,
         ];
     }
