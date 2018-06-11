@@ -56,17 +56,10 @@ class RegistrationService extends Service
     
     public function deleteRegistration(string $email) {
         $us = new UserService();
-        $user = $us->getUserByEmail($email);
         $as = new AttendancesService();
-        $attendance = $as->getCurrentAttendance($user);
-        $user->removeAttendance($attendance);
-        $this->dao->remove($attendance);
-        //si no té cap més assistència, podem eliminar l'usuari
-        if (count($user->getAttendances()) == 0) {
-            $this->dao->remove($user);
-        }
+        $user = $us->getUserByEmail($email);
         try {
-            $this->dao->flush();
+            $as->deleteUserAttendance($user);
         } catch (\Exception $e) {
             throw $e;
         }

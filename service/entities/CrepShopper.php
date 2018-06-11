@@ -54,6 +54,10 @@ class CrepShopper implements IEntity
         $this->user = $user;
     }
     
+    public function removeUser(User $user) {
+        $this->user = NULL;
+    }
+    
     public function toArray(): array {
         return [
             'id' => $this->id,

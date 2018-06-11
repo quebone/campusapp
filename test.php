@@ -19,7 +19,7 @@ function toArgs($input): array {
 
 function test01() {
 //     $_POST = toArgs('regToken=dA-s-NC7KdU:APA91bEn0typeDUTNcpNeI8opWh3ogcLPrcEEGbRMJ-OLmP8o_jagB59WsC1WN0LvelLUNFooK32_2A3pYeUWLdnfqrpPCRnYwBm9mBDR-50RE7T_hRdLWmcvvN8aAEEL3wQJdEsVBGy&ingredients=Formatge roquefort,Llet condensada,Melmelada de maduixa,Nous&function=createOrder&caller=Creps');
-    $_POST = toArgs('email=anna_closa@yahoo.es&function=getRegisteredUser&caller=User');
+    $_POST = toArgs('email=carlescanellas@hotmail.com&function=deleteRegistration&caller=Registration');
     require_once 'AjaxController.php';
 }
 
