@@ -15,6 +15,21 @@ class IngredientsController extends Controller
         $this->is = new IngredientsService();
     }
     
+    public function setCrepsEnabled(array $post): bool {
+        $sc = new SystemController();
+        return $sc->setCrepsEnabled($post);
+    }
+    
+    public function setCrepsManagerEnabled(array $post): bool {
+        $sc = new SystemController();
+        return $sc->setCrepsManagerEnabled($post);
+    }
+    
+    public function setMaxPendingCreps(array $post): bool {
+        $sc = new SystemController();
+        return $sc->setMaxPendingCreps($post);
+    }
+    
     public function getIngredients(): array {
         try {
             $ingredients = $this->is->getIngredients();

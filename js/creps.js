@@ -9,9 +9,37 @@ const states = [
 
 var showDoneNotification = true;
 var cols = [];
+const refreshTime = 5000;
+var intervalId;
 
 window.onload = function () {
+	getServerData();
+	intervalId = setInterval(getServerData, refreshTime);
+}
+
+function getServerData() {
 	getOrders();
+	getCrepsManagerEnabled();
+}
+
+function getCrepsManagerEnabled() {
+	var dataToSend = "function=getCrepsManagerEnabled";
+	send(dataToSend, AJAXCONTROLLER, getCrepsManagerEnabledReturn);
+}
+
+function getCrepsManagerEnabledReturn(msg) {
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+		if (msg[1]) {
+			document.getElementById("managerNotAllowed").setAttribute("hidden", "");
+			document.getElementById("data").removeAttribute("hidden");
+		} else {
+			document.getElementById("managerNotAllowed").removeAttribute("hidden");
+			document.getElementById("data").setAttribute("hidden", "");
+		}
+	} else {
+		errorMessage(msg[1]);
+	}
 }
 
 function getOrders() {
@@ -49,7 +77,7 @@ function addOrders(orders) {
 		}
 		cols[1].innerHTML = ingredients;
 		setOrderColors(orders[i]);
-		newRow.classList.remove('template');
+		newRow.className = 'active';
 		tbody.appendChild(newRow);
 	}
 }
@@ -174,5 +202,18 @@ function checkServed(tr) {
 		if (tr.querySelector('td.col-order').classList.contains('done')) {
 			tr.setAttribute('hidden', true);
 		}
+	}
+}
+
+function toggleShop(elem) {
+	var dataToSend = "crepsEnabled=" + elem.checked + "&function=setCrepsEnabled";
+	send(dataToSend, AJAXCONTROLLER, toggleShopReturn);
+}
+
+function toggleShopReturn(msg) {
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+	} else {
+		errorMessage(msg[1]);
 	}
 }

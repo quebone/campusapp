@@ -14,15 +14,12 @@ class CrepShopper implements IEntity
 {
     /** @Id @Column(type="integer") @GeneratedValue **/
     private $id;
-    /** @Column(type="string", length=255, nullable=true) **/
-    private $regToken;
     /** @OneToMany(targetEntity="Order", mappedBy="crepShopper") **/
     private $orders;
-    /** @OneToOne(targetEntity="User") **/
-    private $user;
+    /** @OneToOne(targetEntity="Person") **/
+    private $person;
     
     public function __construct() {
-        $this->user = NULL;
         $this->orders = new ArrayCollection();
     }
     
@@ -30,12 +27,12 @@ class CrepShopper implements IEntity
         return $this->id;
     }
     
-    public function getRegToken(): ?string {
-        return $this->regToken;
+    public function getRegtoken(): ?string {
+        return $this->person->getRegtoken();
     }
     
-    public function setRegToken(string $regToken) {
-        $this->regToken = $regToken;
+    public function setRegtoken(string $regtoken) {
+        $this->person->setRegtoken($regtoken);
     }
     
     public function getOrders(): ?Selectable {
@@ -46,22 +43,22 @@ class CrepShopper implements IEntity
         $this->orders = $orders;
     }
     
-    public function getUser(): ?User {
-        return $this->user;
+    public function getPerson(): Person {
+        return $this->person;
     }
     
-    public function setuser(?User $user) {
-        $this->user = $user;
+    public function setPerson(Person $person) {
+        $this->person = $person;
     }
     
     public function removeUser(User $user) {
-        $this->user = NULL;
+        $this->person = NULL;
     }
     
     public function toArray(): array {
         return [
             'id' => $this->id,
-            'regToken' => $this->regToken,
+            'regtoken' => $this->getRegtoken(),
         ];
     }
     

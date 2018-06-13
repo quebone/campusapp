@@ -14,6 +14,34 @@ function setVisibleReturn(msg) {
 	}
 }
 
+function setCrepsManagerEnabled(elem) {
+	var crepsManagerEnabled = elem.checked;
+	var dataToSend = "crepsManagerEnabled=" + crepsManagerEnabled + "&function=setCrepsManagerEnabled";
+	send(dataToSend, AJAXCONTROLLER, setCrepsEnabledReturn);
+}
+
+function setCrepsEnabledReturn(msg) {
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+	} else {
+		errorMessage(msg[1]);
+	}
+}
+
+function setMaxPendingCreps(elem) {
+	var maxPendingCreps = getElemValue(elem);
+	var dataToSend = "maxPendingCreps=" + maxPendingCreps + "&function=setMaxPendingCreps";
+	send(dataToSend, AJAXCONTROLLER, setMaxPendingCrepsReturn);
+}
+
+function setMaxPendingCrepsReturn(msg) {
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+	} else {
+		errorMessage(msg[1]);
+	}
+}
+
 function addIngredient() {
 	var name = promptMessage("Escriu el nom de l'ingredient");
 	if (name != null) {

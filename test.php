@@ -1,7 +1,7 @@
 <?php
 
 
-use Campusapp\Service\FirebaseService;
+use Campusapp\Presentation\Controller\StaffController;
 
 require_once 'init.php';
 
@@ -18,17 +18,14 @@ function toArgs($input): array {
 }
 
 function test01() {
-//     $_POST = toArgs('regToken=dA-s-NC7KdU:APA91bEn0typeDUTNcpNeI8opWh3ogcLPrcEEGbRMJ-OLmP8o_jagB59WsC1WN0LvelLUNFooK32_2A3pYeUWLdnfqrpPCRnYwBm9mBDR-50RE7T_hRdLWmcvvN8aAEEL3wQJdEsVBGy&ingredients=Formatge roquefort,Llet condensada,Melmelada de maduixa,Nous&function=createOrder&caller=Creps');
-    $_POST = toArgs('email=carlescanellas@hotmail.com&function=deleteRegistration&caller=Registration');
+    $_POST = toArgs('regtoken=d0cb3pywuSw:APA91bF3XVUlbM-SJCYwZxyqED_XHMKv7V9TZUP9gTW7EL4Vmdj6ePS8xFxi-qu8cA4mpjZclFvesSoCF56ExMOVJITjcdKZkW8GG7RJQhbtKqCK06yBDs2Rs7IpLD_1uR5hxxs6Vo4B&ingredients=[Codony,Nata]&function=createOrder&caller=Creps');
+//     $_POST = toArgs('email=carlescanellas@hotmail.com&function=deleteRegistration&caller=Registration');
     require_once 'AjaxController.php';
 }
 
 function test02() {
-    $fbs = new FirebaseService();
-    $fbs->setToken('dA-s-NC7KdU:APA91bE_fwl-Nv_z4YHY_jjDznffRYnGHVAu7eMtNNgviy9Tby-jBIwxIklgvdwNoeUTk-oFagRRHJuzSL28MuY2HdaX5_gmw-EZQ3BPmH_jQUgEhtYlnr1UQcSa-AwdAsox-4RyAilZ');
-    $fbs->setTitle("titol");
-    $fbs->setMessage("missatge");
-    $fbs->send();
+    $sc = new StaffController();
+    $sc->addStaff(['name'=>"nom", 'surnames'=>"cognoms", 'email'=>'email', 'password'=>"password"]);
 }
 
 test01();

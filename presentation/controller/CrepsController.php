@@ -3,6 +3,9 @@ namespace Campusapp\Presentation\Controller;
 
 use Campusapp\Service\CrepsService;
 use Campusapp\Presentation\Model\CrepsModel;
+use Campusapp\Service\SystemService;
+use Campusapp\Exceptions\MaxCrepOrdersException;
+use Campusapp\Exceptions\CrepShopIsClosedException;
 
 class CrepsController extends Controller
 {
@@ -26,12 +29,24 @@ class CrepsController extends Controller
     
     public function createOrder(array $post): int {
         $post = $this->decodeUrl($post);
-        $ingredients = explode(',', $post['ingredients']);
+        $pendingOrders = $this->cs->getCrepShopperPendingOrders($post['regtoken']);
+        $ss = new SystemService();
+        if (!$ss->getCrepsEnabled()) throw new CrepShopIsClosedException();
+        if (count($pendingOrders) >= $ss->getSystem()->getMaxPendingCreps()) {
+            throw new MaxCrepOrdersException();
+        }
+        $ingredients = $post['ingredients'];
+        $ingredients = explode(",", substr($ingredients, 1, strlen($ingredients) - 2));
+        foreach ($ingredients as $key => $value) $ingredients[$key] = trim($value);
         try {
-            return $this->cs->createOrder($ingredients, $post['regToken']);
+            return $this->cs->createOrder($ingredients, $post['regtoken']);
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+    
+    public function getPendingOrders(array $post): array {
+        return $this->cs->getCrepShopperPendingOrders($post['regtoken']);
     }
     
     public function getOrdersNotSent(array $post): array {
@@ -73,4 +88,15 @@ class CrepsController extends Controller
             throw $e;
         }
     }
+    
+    public function setCrepsEnabled(array $post): bool {
+        $sc = new SystemController();
+        return $sc->setCrepsEnabled($post);
+    }
+
+    public function getCrepsManagerEnabled(): bool {
+        $ss = new SystemService();
+        return $ss->getCrepsManagerEnabled();
+    }
+    
 }

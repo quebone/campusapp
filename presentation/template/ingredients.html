@@ -2,8 +2,8 @@
 <html lang="ca">
 <head>
 	<meta charset="utf-8" />
-	<title>Ingredients</title>
-	<meta name="description" content="Ingredients dels creps" />
+	<title>Gestor de creps</title>
+	<meta name="description" content="Ajustos per la compra de creps" />
 	<meta name="author" content="Carles Canellas" />
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
 	<link href="css/sticky-footer-navbar.css" rel="stylesheet" />
@@ -18,9 +18,19 @@
   <!-- Begin page content -->
   <main role="main" class="container">
 	  <div class="py-2"></div>
+		<div class="container">
+			<div class="row">
+        <div class="custom-control custom-checkbox mr-3">
+          <input type="checkbox" class="custom-control-input" id="crepsManagerEnabled" onchange="setCrepsManagerEnabled(this)">
+          <label class="custom-control-label" for="crepsManagerEnabled">Habilitar el</label> <a href="creps.php" target="_blank">gestor de vendes</a>
+        </div>
+        <div class="custom-control">
+          <label class="" for="maxPendingCreps">Màxim número de creps pendents per comprador</label>
+          <input type="number" class="" id="maxPendingCreps" min="1" max="10" value="5" onchange="setMaxPendingCreps(this)">
+        </div>
+      </div>
     <button class="btn btn-primary btn-lg btn-block" onclick="addIngredient()">Afegir ingredient</button>
 	  <div class="py-2"></div>
-		<div class="container">
       <div class="row">
         <div class="col-md-5 order-md-1">
 		      <h4 class="mb-3">Ingredients dels creps</h4>

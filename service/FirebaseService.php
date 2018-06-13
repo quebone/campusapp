@@ -1,6 +1,8 @@
 <?php
 namespace Campusapp\Service;
 
+use Campusapp\Exceptions\FirebaseException;
+
 class FirebaseService extends Service
 {
     private $api;
@@ -109,7 +111,7 @@ class FirebaseService extends Service
         // Execute post
         $result = curl_exec($ch);
         if($result === FALSE){
-            die('Curl failed: ' . curl_error($ch));
+            throw new FirebaseException(curl_error($ch));
         }
         
         // Close connection

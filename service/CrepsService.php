@@ -3,6 +3,7 @@ namespace Campusapp\Service;
 
 use Campusapp\Service\Entities\CrepShopper;
 use Campusapp\Service\Entities\Order;
+use Campusapp\Service\Entities\Person;
 
 class CrepsService extends Service
 {
@@ -19,16 +20,40 @@ class CrepsService extends Service
         }
     }
     
-    public function createOrder(array $ingredientsArray, string $regToken): int {
+    public function getCrepShopperPendingOrders(string $regtoken): array {
+        $pending = [];
         try {
-            $shoppers = $this->dao->getByFilter("CrepShopper", ['regToken' => $regToken]);
-            if (count($shoppers) == 0) {
+            $persons = $this->dao->getByFilter("Person", ['regtoken' => $regtoken]);
+            if (count($persons) == 0) return 0;
+            $shopper = $this->dao->getByFilter("CrepShopper", ['person' => $persons[0]])[0];
+            $orders = $shopper->getOrders();
+            foreach ($orders as $order) {
+                if (!$order->getServed()) $pending[] = $order->getId();
+            }
+            return $pending;
+        } catch (\Exception $e) {
+        }
+    }
+    
+    public function createOrder(array $ingredientsArray, string $regtoken): int {
+        try {
+            $shoppers = $this->dao->getByFilter("CrepShopper");
+            $found = FALSE;
+            $i = 0;
+            while (!$found && $i < count($shoppers)) {
+                if (!strcmp($shoppers[$i]->getRegtoken(), $regtoken)) {
+                    $shopper = $shoppers[$i];
+                    $found = TRUE;
+                } else $i++;
+            }
+            if (!$found) {
+                $person = new Person();
+                $this->dao->persist($person);
+                $person->setRegtoken($regtoken);
                 $shopper = new CrepShopper();
-                $shopper->setRegToken($regToken);
+                $shopper->setPerson($person);
                 $this->dao->persist($shopper);
-            } else $shopper = $shoppers[0];
-            $users = $this->dao->getByFilter("User", ['regtoken' => $regToken]);
-            if (count($users) > 0) $shopper->setuser($users[count($users) - 1]);
+            };
             $order = new Order();
             $this->dao->persist($order);
             $order->setCrepShopper($shopper);
@@ -99,7 +124,7 @@ class CrepsService extends Service
     private function sendNotification(Order $order) {
         $fbs = new FirebaseService();
         $shopper = $order->getCrepShopper();
-        $fbs->setToken($shopper->getRegToken());
+        $fbs->setToken($shopper->getRegtoken());
         $ingredients = $order->getIngredients();
         $ingredientsList = "";
         for ($i = 0; $i < count($ingredients); $i++) {

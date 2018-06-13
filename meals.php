@@ -5,9 +5,9 @@ use Campusapp\Presentation\Controller\MealsController;
 require_once 'init.php';
 // require_once 'sessions.php';
 
-$mc = new MealsController();
+$ss = new MealsController();
 $data = [];
-$data['meals'] = $mc->getMealStatistics();
+$data['meals'] = $ss->getMealStatistics();
 require_once 'navigation.php';
 
 $template = new \Transphporm\Builder(TPLDIR.'meals.html', TPLDIR.'meals.tss');

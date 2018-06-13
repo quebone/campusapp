@@ -1,5 +1,8 @@
 @import 'navigation.tss';
 
+#crepsManagerEnabled:[data(system.crepsManagerEnabled)=true]:attr(checked) {content: "" };
+#maxPendingCreps:attr(value) {content: data(system.maxPendingCreps)}
+
 tbody tr {repeat: data(ingredients)};
 tbody tr:attr(id) {content: "id-", iteration(id) };
 tbody tr td:nth-child(1) {content: iteration(name) };

@@ -16,7 +16,7 @@ class AttendancesService extends Service
     public function getCurrentAttendants(): array {
         $data = [];
         try {
-            $attendances = $this->getCurrentAttendancesWithRegistration();
+            $attendances = $this->getCurrentAttendances();
             foreach ($attendances as $attendance)
                 $data[] = $attendance->getUser();
             return $data;
@@ -25,7 +25,7 @@ class AttendancesService extends Service
         }
     }
 
-    public function getCurrentAttendancesWithRegistration(): array {
+    public function getCurrentAttendances(): array {
         try {
             $attendances = $this->dao->getByFilter("Attendance");
             foreach ($attendances as $key => $attendance) {

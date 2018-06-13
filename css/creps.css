@@ -7,11 +7,26 @@ body {
 	color: white;
 }
 
-.toggle-served {
-	text-align: center;
-	color: white;
+.header {
+	position: fixed;
 	font-size: 1rem;
 	font-weight: normal;
+	padding-left: 1rem;
+	background-color: black;
+	top: 0px;
+	width: 100%;
+}
+
+.inline {
+	display: inline;
+}
+
+.mr-3 {
+	margin-right: 3rem;
+}
+
+.orders {
+	margin-top: 1.2rem;
 }
 
 table {

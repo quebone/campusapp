@@ -1,13 +1,17 @@
 <?php
 use Campusapp\Service\WebPage;
 use Campusapp\Presentation\Controller\IngredientsController;
+use Campusapp\Service\SystemService;
 
 require_once 'init.php';
 require_once 'sessions.php';
 
-$mc = new IngredientsController();
+$ic = new IngredientsController();
+$ss = new SystemService();
+
 $data = [];
-$data['ingredients'] = $mc->getIngredients();
+$data['ingredients'] = $ic->getIngredients();
+$data['system'] = $ss->getSystem()->toArray();
 require_once 'navigation.php';
 
 $template = new \Transphporm\Builder(TPLDIR.'ingredients.html', TPLDIR.'ingredients.tss');

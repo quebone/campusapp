@@ -1,61 +1,29 @@
 <?php
 namespace Campusapp\Service\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Selectable;
+
 /**
  * Classe que modela un administrador
  *
  * @Entity @Table(name="staff")
  */
 
-class Staff implements IEntity
+class Staff extends RegisteredPerson implements IEntity
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
-    private $id;
-    /** @Column(type="string", length=40, nullable=true) **/
-    private $name;
-    /** @Column(type="string", length=70, nullable=true) **/
-    private $surnames;
-    /** @Column(type="string", length=50, nullable=true) **/
-    private $email;
     /** @Column(type="string", length=255, nullable=true) **/
     private $password;
     /** @Column(type="integer") **/
     private $role;
+    /** OneToMany target=Notification, mappedBy=staff **/
+    private $notifications;
     
     public function __construct() {
-        $this->name = "";
-        $this->surnames = "";
-        $this->email = "";
+        parent::__construct();
         $this->password = DEFAULT_PASSWORD;
         $this->role = ADMINISTRATOR;
-    }
-    
-    public function getId(): int {
-        return $this->id;
-    }
-    
-    public function getName(): ?string {
-        return $this->name;
-    }
-    
-    public function setName(?string $name) {
-        $this->name = $name;
-    }
-    
-    public function getSurnames(): ?string {
-        return $this->surnames;
-    }
-    
-    public function setSurnames(?string $surnames) {
-        $this->surnames = $surnames;
-    }
-    
-    public function getEmail(): ?string {
-        return $this->email;
-    }
-    
-    public function setEmail(string $email) {
-        $this->email = $email;
+        $this->notifications = new ArrayCollection();
     }
     
     public function getPassword(): ?string {
@@ -74,6 +42,30 @@ class Staff implements IEntity
         $this->role = $role;
     }
     
+    public function getNotifications(): Selectable {
+        return $this->notifications;
+    }
+    
+    public function setNotifications(Selectable $notifications) {
+        $this->notifications = $notifications;
+    }
+    
+    public function addNotification(Notification $notification): bool {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
+    public function removeNotification(Notification $notification): bool {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
     public function toArray(): array {
         return [
             'id' => $this->id,
@@ -81,6 +73,7 @@ class Staff implements IEntity
             'surnames' => $this->surnames,
             'email' => $this->email,
             'role' => $this->role,
+            'regtoken' => $this->regtoken,
         ];
     }
     

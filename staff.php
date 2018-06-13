@@ -5,10 +5,10 @@ use Campusapp\Presentation\Controller\StaffController;
 require_once 'init.php';
 require_once 'sessions.php';
 
-$mc = new StaffController();
+$ss = new StaffController();
 $data = [];
-$data['staff'] = $mc->getStaff();
-$data['members'] = $mc->getEgsMembers();
+$data['staff'] = $ss->getStaff();
+$data['members'] = $ss->getEgsMembers();
 require_once 'navigation.php';
 
 $template = new \Transphporm\Builder(TPLDIR.'staff.html', TPLDIR.'staff.tss');

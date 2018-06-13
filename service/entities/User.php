@@ -10,20 +10,10 @@ use Doctrine\Common\Collections\Selectable;
  * @Entity @Table(name="users")
  */
 
-class User implements IEntity
+class User extends RegisteredPerson implements IEntity
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
-    private $id;
-    /** @Column(type="string", length=40, nullable=true) **/
-    private $name;
-    /** @Column(type="string", length=70, nullable=true) **/
-    private $surnames;
-    /** @Column(type="string", length=50, nullable=true) **/
-    private $email;
     /** @Column(type="string", length=15, nullable=true) **/
     private $phone;
-    /** @Column(type="string", length=255, nullable=true) **/
-    private $regtoken;
     /** @Column(type="date", nullable=true) **/
     private $birthDate;
     /** @Column(type="string", length=100, nullable=true) **/
@@ -42,9 +32,7 @@ class User implements IEntity
     private $attendances;
     
     public function __construct() {
-        $this->name = "";
-        $this->surnames = "";
-        $this->email = "";
+        parent::__construct();
         $this->phone = "";
         $this->address = "";
         $this->country = "";
@@ -89,14 +77,6 @@ class User implements IEntity
     
     public function setPhone(?string $phone) {
         $this->phone = $phone;
-    }
-    
-    public function getRegtoken(): ?string {
-        return $this->regtoken;
-    }
-    
-    public function setRegtoken(?string $regtoken) {
-        $this->regtoken = $regtoken;
     }
     
     public function getBirthdate(): \DateTime {
@@ -198,6 +178,7 @@ class User implements IEntity
             'postalCode' => $this->postalCode,
             'dni' => $this->dni,
             'privacy' => $this->privacy,
+            'regtoken' => $this->regtoken,
         ];
     }
 

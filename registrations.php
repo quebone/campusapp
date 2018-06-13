@@ -5,9 +5,9 @@ use Campusapp\Presentation\Controller\RegistrationsController;
 require_once 'init.php';
 require_once 'sessions.php';
 
-$mc = new RegistrationsController();
+$ss = new RegistrationsController();
 $data = [];
-$data['registered'] = $mc->getRegistered();
+$data['registered'] = $ss->getRegistered();
 require_once 'navigation.php';
 
 $template = new \Transphporm\Builder(TPLDIR.'registrations.html', TPLDIR.'registrations.tss');
