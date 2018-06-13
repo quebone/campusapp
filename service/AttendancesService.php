@@ -199,8 +199,6 @@ class AttendancesService extends Service
         $user->removeAttendance($attendance);
         $this->dao->remove($attendance);
         if (count($user->getAttendances()) == 0) {
-            $crepShoppers = $this->dao->getByFilter("CrepShopper", ['user'=>$user]);
-            if (count($crepShoppers) > 0) $crepShoppers[0]->setUser(NULL);
             $this->dao->remove($user);
         }
         try {

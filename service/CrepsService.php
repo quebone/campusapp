@@ -24,7 +24,7 @@ class CrepsService extends Service
         $pending = [];
         try {
             $persons = $this->dao->getByFilter("Person", ['regtoken' => $regtoken]);
-            if (count($persons) == 0) return 0;
+            if (count($persons) == 0) return [];
             $shopper = $this->dao->getByFilter("CrepShopper", ['person' => $persons[0]])[0];
             $orders = $shopper->getOrders();
             foreach ($orders as $order) {
