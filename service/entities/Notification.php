@@ -1,9 +1,6 @@
 <?php
 namespace Campusapp\Service\Entities;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Selectable;
-
 /**
  * Classe que modela una notificació
  *
@@ -20,11 +17,15 @@ class Notification implements IEntity
     private $body;
     /** @Column(type="string", length=255) **/
     private $message;
-    /** @Column(type="date") **/
+    /** @Column(type="datetime") **/
     private $date;
-    /** ManyToMany target="Role" **/
-    private $roles;
-    /** OneToOne target="Staff" **/
+    /** @Column(type="integer") **/
+    private $roleGroup;
+    /** @Column(type="integer") **/
+    private $sent;
+    /** @Column(type="integer") **/
+    private $failed;
+    /** @ManyToOne(targetEntity="Staff") **/
     private $staff;
     
     public function __construct() {
@@ -32,7 +33,9 @@ class Notification implements IEntity
         $this->body = "";
         $this->message = "";
         $this->date = new \DateTime();
-        $this->roles = new ArrayCollection();
+        $this->roleGroup = 0;
+        $this->sent = 0;
+        $this->failed = 0;
     }
     
     public function getId(): int {
@@ -71,30 +74,30 @@ class Notification implements IEntity
         $this->date = $date;
     }
     
-    public function getRoles(): Selectable {
-        return $this->roles;
+    public function getRoleGroup(): int {
+        return $this->roleGroup;
     }
     
-    public function setRoles(Selectable $roles) {
-        $this->roles = $roles;
+    public function setRoleGroup(int $roleGroup) {
+        $this->roleGroup = $roleGroup;
     }
     
-    public function addRole(Role $role): bool {
-        if (!$this->roles->contains($role)) {
-            $this->roles->add($role);
-            return TRUE;
-        }
-        return FALSE;
+    public function getSent(): int {
+        return $this->sent;
     }
     
-    public function removeRole(Role $role): bool {
-        if ($this->roles->contains($role)) {
-            $this->roles->removeElement($role);
-            return TRUE;
-        }
-        return FALSE;
+    public function setSent(int $sent) {
+        $this->sent = $sent;
     }
-
+    
+    public function getFailed(): int {
+        return $this->failed;
+    }
+    
+    public function setFailed(int $failed) {
+        $this->failed = $failed;
+    }
+    
     public function getStaff(): Staff {
         return $this->staff;
     }
@@ -109,6 +112,10 @@ class Notification implements IEntity
             'title' => $this->title,
             'body' => $this->body,
             'message' => $this->message,
+            'roleGroup' => $this->roleGroup,
+            'sent' => $this->sent,
+            'failed' => $this->failed,
+            'date' => $this->date->format('d-m-Y H:i:s'),
         ];
     }
     

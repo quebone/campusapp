@@ -1,0 +1,94 @@
+<!doctype html>
+
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+
+  <title>Notificacions</title>
+  <meta name="description" content="Notifications dels administradors a la resta d'usuaris">
+  <meta name="author" content="Carles Canellas" >
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+
+<body>
+  <header>
+    <!-- Fixed navbar -->
+    <nav id="main"></nav>
+  </header>
+	<!-- Begin page content -->
+	<main role="main" class="container">
+   <div class="container">
+			<div class="py-2"></div>
+				<form>
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="title">Títol</label>
+              <input type="text" class="form-control" id="title" name="title" >
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="group">Destinataris</label>
+              <select class="custom-select d-block w-100" id="group" name="group" >
+                <option value="1">Campusins</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="message">Missatge</label>
+              <input type="text" class="form-control" id="message" name="message" >
+            </div>
+          </div>
+				</form>
+        <button class="btn btn-primary btn-lg btn-block" id="sendNotification" onclick="sendNotification()">Enviar notificació</button>
+				<div class="py-2"></div>
+	      <div class="row">
+	        <div class="col-md-12 order-md-1">
+			      <h4 class="mb-3">Notifications emeses</h4>
+			      <div class="row">
+			      	<div class="col-md-12 mb-3">
+			      		<table class="table">
+			      			<thead>
+			      				<th scope="col">Títol</th>
+			      				<th scope="col">Missatge</th>
+			      				<th scope="col">Destinataris</th>
+			      				<th scope="col">Remitent</th>
+			      				<th scope="col" class="md-1">Ok</th>
+			      				<th scope="col">Errors</th>
+			      				<th scope="col">Data</th>
+			      			</thead>
+			      			<tbody>
+			      				<tr id="id-0">
+			      					<td>Canvi d'horari</td>
+			      					<td>L'hora del paradise time serà a les 5</td>
+			      					<td>Campusins</td>
+			      					<td>Remitent</td>
+			      					<td>Abast</td>
+			      					<td>Errors</td>
+			      					<td>Data</td>
+			      				</tr>
+		      				</tbody>
+	      				</table>
+	    				</div>
+			      </div>
+	        </div>
+	      </div>	
+			</div>
+	
+	</main>
+	
+	<footer class="footer">
+	  <div class="container">
+	    <a href="http://esclatgospelsingers.com" target="_blank"><span class="text-muted">Esclat Gospel Singers</span></a>
+	  </div>
+	</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="js/notifications.js"></script>
+</body>
+</html>

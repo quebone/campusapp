@@ -6,7 +6,6 @@ use Campusapp\Presentation\Model\UserModel;
 use Campusapp\Service\StaffService;
 use Campusapp\Presentation\Model\StaffModel;
 use Campusapp\Exceptions\InstanceNotFoundException;
-use Campusapp\DAO;
 
 class UserController extends Controller
 {
@@ -43,16 +42,14 @@ class UserController extends Controller
         //is staff?
         if (isset($post['password']) && strlen($post['password']) > 0) {
             try {
-                $member = $ss->getMemberByEmailAndPassword($post['email'], $post['password']);
-                $member->setRegtoken($post['regtoken']);
-                $data = $sm->getStaffData($member);
+                $user = $ss->getMemberByEmailAndPassword($post['email'], $post['password']);
+                $data = $sm->getStaffData($user);
             } catch (InstanceNotFoundException $e) {
                 //is egs?
                 try {
                     $egs = $this->us->getJoomlaUserByEmailAndPassword($post['email'], $post['password']);
                     try {
                         $user = $this->us->getUserByEmail($post['email']);
-                        $user->setRegtoken($post['regtoken']);
                     } catch (\Exception $e) {
                     } finally {
                         $data = $this->um->getEgsBasicData($egs);
@@ -67,9 +64,8 @@ class UserController extends Controller
         //is campusi?
         } elseif (isset($post['dni']) && strlen($post['dni']) > 0) {
             try {
-                $campusi = $this->us->getUserByEmailAndDni($post['email'], $post['dni']);
-                $campusi->setRegtoken($post['regtoken']);
-                $data = $this->um->getUserData($campusi);
+                $user = $this->us->getUserByEmailAndDni($post['email'], $post['dni']);
+                $data = $this->um->getUserData($user);
             } catch (\Exception $e) {
                 throw $e;
             }
@@ -77,7 +73,6 @@ class UserController extends Controller
         } else {
             try {
                 $user = $this->us->getUserByEmail($post['email']);
-                $user->setRegtoken($post['regtoken']);
                 $data = $this->um->getUserData($user);
                 $data['role'] = OTHERS;
             } catch (\Exception $e) {
@@ -85,11 +80,20 @@ class UserController extends Controller
             }
         }
         try {
-            $dao = DAO::getInstance();
-            $dao->flush();
+            $this->us->updateUserToken($user, $post['regtoken']);
         } catch (\Exception $e) {
         } finally {
             return $data;
+        }
+    }
+    
+    public function updateToken(array $post): bool {
+        $post = $this->normalize($post);
+        try {
+            $this->us->updateToken($post['id'], $post['regtoken']);
+            return TRUE;
+        } catch (\Exception $e) {
+            throw $e;
         }
     }
 }

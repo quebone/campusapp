@@ -8,7 +8,7 @@ namespace Campusapp\Service\Entities;
  * @Table(name="persons")
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="discr", type="string")
- * @DiscriminatorMap({"person" = "Person", "registeredperson" = "RegisteredPerson"})
+ * @DiscriminatorMap({"person"="Person", "registeredperson"="RegisteredPerson", "user"="User", "staff"="Staff"})
  */
 
 class Person implements IEntity

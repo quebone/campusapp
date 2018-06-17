@@ -117,15 +117,15 @@ class MealsService extends Service
     }
     
     private function getCurrentMeal(): Meal {
-//         $currentDate = '2018-07-05'; //FAKE!!!
         $currentDate = date('Y-m-d');
+//         $currentDate = '2018-07-06'; //FAKE!!!
         $currentHour = intval(date('H'));
         $currentTurn = ($currentHour > 10 && $currentHour < 18) ? LUNCH : DINNER;
         try {
             $meals = $this->dao->getByFilter("Meal");
             foreach ($meals as $meal) {
                 $mealDate = $meal->getDate()->format('Y-m-d');
-                if (!strcmp($currentDate, $mealDate) && $currentTurn = $meal->getTurn()) {
+                if (!strcmp($currentDate, $mealDate) && $currentTurn == $meal->getTurn()) {
                     return $meal;
                 }
             }

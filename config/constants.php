@@ -38,6 +38,24 @@ const ROLES = [
     ADMINISTRATOR => 'Administrador',
 ];
 
+const NOTIFICATION_GROUPS = [
+    1 => [
+        'id' => 1,
+        'name' => 'Campusins',
+        'roles' => [CAMPUSI],
+    ],
+    2 => [
+        'id' => 2,
+        'name' => 'Esclat',
+        'roles' => [EGS, STAFF, MANAGER, ADMINISTRATOR],
+    ],
+    3 => [
+        'id' => 3,
+        'name' => 'Tots',
+        'roles' => [CAMPUSI, EGS, STAFF, MUSICIAN, OTHERS, MANAGER, ADMINISTRATOR],
+    ],
+];
+
 // week days
 define('SUNDAY', 0);
 define('MONDAY', 0);

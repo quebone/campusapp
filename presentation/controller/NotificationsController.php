@@ -26,8 +26,8 @@ class NotificationsController extends Controller
     public function addNotification(array $post): array {
         $post = $this->normalize($post);
         try {
-            $notification = $this->ns->addNotification($post['id'], $post['title'], $post['body'], $post['message'], $post['roles']);
-            return $this->ns->sendNotification(['id'=>$notification->getId(), 'roles'=>$post['roles']]);
+            $notification = $this->ns->addNotification($post['id'], $post['title'], $post['body'], $post['message'], $post['group']);
+            return $this->ns->sendNotification($notification->getId(), $post['group']);
         } catch (\Exception $e) {
             throw $e;
         }
@@ -35,7 +35,7 @@ class NotificationsController extends Controller
     
     public function sendNotification($post): array {
         try {
-            return $this->ns->sendNotification(intval($post['id']), $post['roles']);
+            return $this->ns->sendNotification(intval($post['id']), $post['group']);
         } catch (\Exception $e) {
             throw $e;
         }

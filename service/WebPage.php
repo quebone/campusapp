@@ -38,7 +38,7 @@ class WebPage
 	}
 	
 	private function addNavUserInfo(Staff $user) {
-		define("NAVUSER", '<span id="user"></span>');
+		define("NAVUSER", '<span class="username"></span>');
 		$userInfo = $user->getName() . " " . $user->getSurnames();
 		$this->contents = str_replace(NAVUSER, $userInfo, $this->contents);
 	}

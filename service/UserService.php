@@ -98,4 +98,22 @@ class UserService extends Service
         $this->dao->persist($user);
         return $user;
     }
+    
+    public function updateToken(int $id, string $token) {
+        try {
+            $user = $this->dao->getById("Person", $id);
+            $this->updateUserToken($user, $token);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+    
+    public function updateUserToken(User $user, string $token) {
+        $user->setRegtoken($token);
+        try {
+            $this->dao->flush();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

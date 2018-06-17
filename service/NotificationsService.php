@@ -11,13 +11,13 @@ class NotificationsService extends Service
     
     public function getNotifications(): array {
         try {
-            return $this->dao->getByFilter("Notification");
+            return $this->dao->getByFilter("Notification", [], ['date' => 'DESC']);
         } catch (\Exception $e) {
             throw $e;
         }
     }
     
-    public function addNotification(int $staffId, string $title, string $body, string $message, array $roles): Notification {
+    public function addNotification(int $staffId, string $title, string $body, string $message, int $group): Notification {
         try {
             $staff = $this->dao->getById("Staff", $staffId);
             $notification = new Notification();
@@ -25,12 +25,7 @@ class NotificationsService extends Service
             $notification->setBody($body);
             $notification->setMessage($message);
             $notification->setStaff($staff);
-            $roleInstances = $this->dao->getByFilter("Role");
-            foreach ($roleInstances as $roleInstance) {
-                if (in_array($roleInstance->getId(), $roles)) {
-                    $notification->addRole($roleInstance);
-                }
-            }
+            $notification->setRoleGroup($group);
             $this->dao->persist($notification);
             $this->dao->flush();
             return $notification;
@@ -39,18 +34,19 @@ class NotificationsService extends Service
         }
     }
     
-    public function sendNotification(int $id, array $roles): array {
+    public function sendNotification(int $id, int $group): array {
         try {
             $notification = $this->dao->getById("Notification", $id);
-            $users = [];
             $as = new AttendancesService();
             $attendances = $this->dao->getByFilter("Attendance");
         } catch (\Exception $e) {
             throw $e;
         }
+        $users = [];
+        $roles = NOTIFICATION_GROUPS[$group]['roles'];
         foreach ($attendances as $attendance) {
             if ($as->isCurrent($attendance)) {
-                if (!in_array($attendance->getUser(), $users)) $users[] = $attendance->getUser();
+                if (!in_array($attendance->getUser(), $users) && in_array($attendance->getRole(), $roles)) $users[] = $attendance->getUser();
             }
         }
         $sent = 0;
@@ -69,6 +65,13 @@ class NotificationsService extends Service
                     $failed++;
                 }
             }
+        }
+        $notification->setSent($sent);
+        $notification->setFailed($failed);
+        try {
+            $this->dao->flush();
+        } catch (\Exception $e) {
+            throw $e;
         }
         return ['sent'=>$sent, 'failed'=>$failed];
     }

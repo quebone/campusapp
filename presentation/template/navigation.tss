@@ -3,3 +3,4 @@ nav#main {content: template('navigation.html')};
 #navAdministrator:data[logged=false]:attr(hidden) {content: true; }
 #navUser:data[logged=false]:attr(hidden) {content: true; }
 #navUser a span:data[logged=true] {content: data(loggedUser.name), " ",data(loggedUser.surnames) ; }
+#navUser a span:data[logged=true]:attr(staffId) {content: data(loggedUser.id); }

@@ -26,6 +26,8 @@ class NotificationsModel extends Model
     
     public function getNotificationData(Notification $notification): array {
         $data = $notification->toArray();
+        $data['groupName'] = NOTIFICATION_GROUPS[$notification->getRoleGroup()]['name'];
+        $data['staff'] = $notification->getStaff()->getEmail();
         return $data;
     }
 }
