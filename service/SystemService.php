@@ -2,6 +2,7 @@
 namespace Campusapp\Service;
 
 use Campusapp\Service\Entities\System;
+use Campusapp\Exceptions\InvalidPasswordException;
 
 class SystemService extends Service
 {
@@ -37,5 +38,12 @@ class SystemService extends Service
     
     public function getCrepsEnabled(): bool {
         return $this->system->getCrepsEnabled();
+    }
+    
+    public function setCrepsManagerPassword(string $password) {
+        if (strlen($password) >= MINCREPPASSWORDLENGTH && strlen($password) <= MAXCREPPASSWORDLENGTH) {
+            $this->system->setCrepsManagerPassword($password);
+            $this->dao->flush();
+        } else throw new InvalidPasswordException();
     }
 }

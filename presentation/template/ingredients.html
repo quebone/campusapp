@@ -25,14 +25,18 @@
           <label class="custom-control-label" for="crepsManagerEnabled">Habilitar el</label> <a href="creps.php" target="_blank">gestor de vendes</a>
         </div>
         <div class="custom-control">
-          <label class="" for="maxPendingCreps">Màxim número de creps pendents per comprador</label>
-          <input type="number" class="" id="maxPendingCreps" min="1" max="10" value="5" onchange="setMaxPendingCreps(this)">
+          <label class="" for="crepsManagerPassword" title="Contrasenya pel gestor de vendes">Contrasenya</label>
+          <input type="text" class="input-7" id="crepsManagerPassword" onchange="setCrepsManagerPassword(this)">
+        </div>
+        <div class="custom-control">
+          <label class="" for="maxPendingCreps" title="Màxim número de creps pendents per comprador">Creps pendents per comprador</label>
+          <input type="number" class="input-4" id="maxPendingCreps" min="1" max="10" value="5" onchange="setMaxPendingCreps(this)">
         </div>
       </div>
     <button class="btn btn-primary btn-lg btn-block" onclick="addIngredient()">Afegir ingredient</button>
 	  <div class="py-2"></div>
       <div class="row">
-        <div class="col-md-5 order-md-1">
+        <div class="col-md-12 order-md-1">
 		      <h4 class="mb-3">Ingredients dels creps</h4>
 		      <div class="row">
 		      	<div class="col-md-12 mb-3">
@@ -40,6 +44,12 @@
 		      			<thead>
 		      				<th scope="col">Ingredient</th>
 		      				<th class="col-md-1" scope="col">Visible</th>
+		      				<th class="" scope="col"></th>
+		      				<th class="" scope="col">Castellà</th>
+		      				<th class="" scope="col"></th>
+		      				<th class="" scope="col">Anglès</th>
+		      				<th class="" scope="col"></th>
+		      				<th class="" scope="col">Francès</th>
 		      				<th class="" scope="col"></th>
 		      			</thead>
 		      			<tbody>
@@ -49,6 +59,18 @@
 		      					<td>
 		      						<i class="material-icons link" title="editar" onclick="editIngredient(event)">edit</i>
 		      						<i class="material-icons link" title="eliminar" onclick="deleteIngredient(event)">delete</i>
+		      					</td>
+		      					<td class="es"></td>
+		      					<td>
+		      						<i class="material-icons link" title="editar" onclick="editLanguage(event, 'es')">edit</i>
+		      					</td>
+		      					<td class="en"></td>
+		      					<td>
+		      						<i class="material-icons link" title="editar" onclick="editLanguage(event, 'en')">edit</i>
+		      					</td>
+		      					<td class="fr"></td>
+		      					<td>
+		      						<i class="material-icons link" title="editar" onclick="editLanguage(event, 'fr')">edit</i>
 		      					</td>
 		      				</tr>
 	      				</tbody>

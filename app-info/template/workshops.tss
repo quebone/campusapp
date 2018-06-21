@@ -1,0 +1,4 @@
+.workshop {repeat: data(workshops) }
+.workshop a:attr(href) {content: iteration(link) }
+.workshop img:attr(src) {content: iteration(relDir), iteration(image) }
+.workshop h4 {content: iteration(title) }

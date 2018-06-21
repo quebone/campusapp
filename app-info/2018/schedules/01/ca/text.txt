@@ -1,0 +1,21 @@
+<?xml version='1.0' standalone='yes'?>
+<schedule>
+	<date>Dijous 5/7/2018</date>
+	<activity>
+		<time>17h45</time>
+		<title>Arribada, inscripcions i allotjament dels campusins/es</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>20h</time>
+		<title>Sopar de benvinguda</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>22h</time>
+		<title>OPEN SESSION</title>
+		<class>blue</class>
+		<link>#</link>
+	</activity>
+</schedule>
+

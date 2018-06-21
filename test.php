@@ -1,5 +1,7 @@
 <?php
 
+use Campusapp\Service\Entities\WebSchedule;
+
 require_once 'init.php';
 
 define('DEBUG', true);
@@ -15,8 +17,14 @@ function toArgs($input): array {
 }
 
 function test01() {
-    $_POST = toArgs('id=8&token=fake&function=updateToken&caller=User');
+    $_POST = toArgs('id=19&function=deleteStaff&caller=Staff');
     require_once 'AjaxController.php';
 }
 
-test01();
+function test02() {
+    $xmlFile = WEBDIR.'2018/schedules/01/ca/text.txt';
+    $schedule = new WebSchedule(WEBDIR.'2018/schedules/01/', 'ca');
+    print_r($schedule->toArray()['activities']);
+}
+
+test02();

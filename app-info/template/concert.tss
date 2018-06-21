@@ -1,0 +1,5 @@
+h3 {content: data(title) }
+h5 {content: data(date) }
+img:attr(src) {content: data(image) }
+.info {repeat: data(info) }
+.info p {content: iteration() }

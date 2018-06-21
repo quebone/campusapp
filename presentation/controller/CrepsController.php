@@ -6,6 +6,7 @@ use Campusapp\Presentation\Model\CrepsModel;
 use Campusapp\Service\SystemService;
 use Campusapp\Exceptions\MaxCrepOrdersException;
 use Campusapp\Exceptions\CrepShopIsClosedException;
+use Campusapp\Service\Translator;
 
 class CrepsController extends Controller
 {
@@ -18,9 +19,15 @@ class CrepsController extends Controller
         $this->cm = new CrepsModel();
     }
     
-    public function getIngredients(): array {
+    public function getIngredients(array $post): array {
         try {
             $ingredients = $this->cs->getVisibleIngredients();
+            if (file_exists(LANGUAGESDIR.$post['lang'])) {
+                foreach ($ingredients as $ingredient) {
+                    $translated = Translator::get($ingredient->getName(), $post['lang']);
+                    if (strlen($translated) > 0) $ingredient->setName($translated);
+                }
+            }
             return $this->cm->getIngredientsData($ingredients);
         } catch (\Exception $e) {
             throw $e;
@@ -39,7 +46,7 @@ class CrepsController extends Controller
         $ingredients = explode(",", substr($ingredients, 1, strlen($ingredients) - 2));
         foreach ($ingredients as $key => $value) $ingredients[$key] = trim($value);
         try {
-            return $this->cs->createOrder($ingredients, $post['regtoken']);
+            return $this->cs->createOrder($ingredients, $post['regtoken'], $post['lang']);
         } catch (\Exception $e) {
             throw $e;
         }

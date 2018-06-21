@@ -9,6 +9,7 @@
 	<link href="css/sticky-footer-navbar.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<link rel="stylesheet" href="css/styles.css?v=1.0" />
+	<link rel="stylesheet" href="css/meals.css?v=1.0" />
 </head>
 <body>
   <header>
@@ -24,7 +25,7 @@
 		      <h4 class="mb-3">Àpats</h4>
 		      <div class="row">
 		      	<div class="col-md-12 mb-3">
-		      		<table class="table table-sm">
+		      		<table class="table table-sm" id="meals">
 		      			<thead class="thead-light">
 		      				<th scope="col">Àpat</th>
 		      				<th scope="col">Total</th>
@@ -32,11 +33,15 @@
 	      						<i class="material-icons link expand-more" onclick="toggleTbodyView(event)">expand_more</i>
 	      						<i class="material-icons link expand-less" onclick="toggleTbodyView(event)" hidden="">expand_less</i>
 		      				</th>
+		      				<th scope="col">
+	      						<i class="material-icons link" title="Veure comensals" onclick="showDiners(event)">assignment</i>
+		      				</th>
 		      			</thead>
 		      			<tbody hidden="">
 		      				<tr class="campusins">
 		      					<td>Campusins</td>
 		      					<td>Subtotal</td>
+		      					<td></td>
 		      					<td></td>
 		      				</tr>
 		      				<tr class="staff">
@@ -84,7 +89,19 @@
 	  </div>
 	</main>
 	
-		<footer class="footer">
+	<div id="modal" class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+  	    <div class="modal-body">
+  	    	<div class="container-fluid">
+  	    		
+          </div>
+        </div>
+		  </div>
+	  </div>
+  </div>
+
+	<footer class="footer">
 	  <div class="container">
 	    <a href="http://esclatgospelsingers.com" target="_blank"><span class="text-muted">Esclat Gospel Singers</span></a>
 	  </div>

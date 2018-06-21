@@ -3,6 +3,7 @@ namespace Campusapp\Service;
 
 use Campusapp\Exceptions\InstanceNotFoundException;
 use Campusapp\Service\Entities\User;
+use Campusapp\Service\Entities\Person;
 
 class UserService extends Service
 {
@@ -108,7 +109,7 @@ class UserService extends Service
         }
     }
     
-    public function updateUserToken(User $user, string $token) {
+    public function updateUserToken(Person $user, string $token) {
         $user->setRegtoken($token);
         try {
             $this->dao->flush();

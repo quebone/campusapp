@@ -13,8 +13,10 @@ const refreshTime = 5000;
 var intervalId;
 
 window.onload = function () {
-	getServerData();
-	intervalId = setInterval(getServerData, refreshTime);
+	if (!document.getElementById('data').hasAttribute('hidden')) {
+		getServerData();
+		intervalId = setInterval(getServerData, refreshTime);
+	}
 }
 
 function getServerData() {

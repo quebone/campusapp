@@ -51,4 +51,13 @@ class MealsController extends Controller
             throw $e;
         }
     }
+    
+    public function getDiners(array $post): array {
+        try {
+            $diners = $this->ms->getMealDiners(intval($post['id']));
+            return $this->mm->getDinersData($diners);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

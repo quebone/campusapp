@@ -15,6 +15,8 @@ class HasMeal implements IEntity
     private $companions;
     /** @Column(type="boolean") **/
     private $assisted;
+    /** @Column(type="datetime", nullable=true) **/
+    private $date;
     /** @ManyToOne(targetEntity="Attendance") **/
     private $attendance;
     /** @ManyToOne(targetEntity="Meal") **/
@@ -45,6 +47,14 @@ class HasMeal implements IEntity
         $this->assisted = $assisted;
     }
     
+    public function getDate(): ?\DateTime {
+        return $this->date;
+    }
+    
+    public function setdate(\DateTime $date) {
+        $this->date = $date;
+    }
+    
     public function getAttendance(): Attendance {
         return $this->attendance;
     }
@@ -66,6 +76,7 @@ class HasMeal implements IEntity
             'id' => $this->id,
             'companions' => $this->companions,
             'assisted' => $this->assisted,
+            'date' => $this->date->format('d-m-Y H:i:s'),
         ];
     }
     

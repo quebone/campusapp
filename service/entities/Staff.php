@@ -16,12 +16,12 @@ class Staff extends RegisteredPerson implements IEntity
     private $password;
     /** @Column(type="integer") **/
     private $role;
-    /** OneToMany target=Notification, mappedBy=staff **/
+    /** OneToMany target=Notification, mappedBy=staff, cascade={"all"} **/
     private $notifications;
     
     public function __construct() {
         parent::__construct();
-        $this->password = DEFAULT_PASSWORD;
+        $this->password = password_hash(DEFAULT_PASSWORD, PASSWORD_BCRYPT);
         $this->role = ADMINISTRATOR;
         $this->notifications = new ArrayCollection();
     }
@@ -42,7 +42,7 @@ class Staff extends RegisteredPerson implements IEntity
         $this->role = $role;
     }
     
-    public function getNotifications(): Selectable {
+    public function getNotifications(): ?Selectable {
         return $this->notifications;
     }
     

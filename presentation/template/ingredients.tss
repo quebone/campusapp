@@ -1,9 +1,14 @@
 @import 'navigation.tss';
 
 #crepsManagerEnabled:[data(system.crepsManagerEnabled)=true]:attr(checked) {content: "" };
+#crepsManagerPassword:attr(value) {content: data(system.crepsManagerPassword)}
 #maxPendingCreps:attr(value) {content: data(system.maxPendingCreps)}
 
 tbody tr {repeat: data(ingredients)};
 tbody tr:attr(id) {content: "id-", iteration(id) };
 tbody tr td:nth-child(1) {content: iteration(name) };
+tbody tr td:nth-child(1) {content: iteration(name) };
 tbody tr input:iteration[visible=true]:attr(checked) {content: true };
+tbody tr td:nth-child(4) {content: iteration(es) };
+tbody tr td:nth-child(6) {content: iteration(en) };
+tbody tr td:nth-child(8) {content: iteration(fr) };

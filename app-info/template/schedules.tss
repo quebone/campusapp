@@ -1,0 +1,3 @@
+.schedule {repeat: data(schedules) }
+.schedule button {content: iteration(date) }
+.schedule a:attr(href) {content: iteration(relDir), 'index.php?lang=', iteration(lang) }

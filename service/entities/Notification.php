@@ -25,7 +25,7 @@ class Notification implements IEntity
     private $sent;
     /** @Column(type="integer") **/
     private $failed;
-    /** @ManyToOne(targetEntity="Staff") **/
+    /** @ManyToOne(targetEntity="Staff", inversedBy="notifications") **/
     private $staff;
     
     public function __construct() {

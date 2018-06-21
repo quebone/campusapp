@@ -1,0 +1,101 @@
+.container {
+/*	padding: 0;*/
+}
+
+.concert {
+	padding: 0;
+}
+
+.image {
+	border: 1px solid grey;
+}
+
+.caption {
+	width:100%;
+	bottom: 0;
+	position: absolute;
+	background:#000;
+	background: -webkit-linear-gradient(bottom, #000 40%, rgba(0, 0, 0, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+	background: -moz-linear-gradient(bottom, #000 40%, rgba(0, 0, 0, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+	background: -o-linear-gradient(bottom, #000 40%, rgba(0, 0, 0, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+	background: linear-gradient(to top, #000 40%, rgba(0, 0, 0, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.thumbnail {
+	border: 0 none;
+	box-shadow: none;
+	margin:0;
+	padding:0;
+}
+
+.caption h4 {
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+}
+
+.header, .info {
+	padding: 1rem;
+}
+
+.info {
+	margin-top: .5rem;
+	text-align: justify;
+}
+
+h5 {
+	color: darkgray;
+}
+
+.schedule .time {
+	background-color: grey;
+	color: white;
+	font-weight: bold;
+	padding: .2rem;
+	text-align: center;
+}
+
+.schedule .title {
+	padding: 0;
+}
+
+.schedule p {
+	padding: .5rem;
+	margin: 0;
+}
+
+.schedule a {
+	color: black;
+	text-decoration: none;
+	cursor: default;
+}
+
+.schedule button {
+	width: 100%;
+	padding: 2rem;
+}
+
+.yellow {
+	background-color: #ffffa0;
+}
+
+.blue {
+	background-color: #a0feff;
+}
+
+.orange {
+	background-color: orange;
+}
+
+.pink {
+	background-color: lightpink;
+}
+
+.green {
+	background-color: lightgreen;
+}
+
+.link {
+	color: blue;
+	cursor: pointer;
+}
+

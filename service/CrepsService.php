@@ -35,7 +35,7 @@ class CrepsService extends Service
         }
     }
     
-    public function createOrder(array $ingredientsArray, string $regtoken): int {
+    public function createOrder(array $ingredientsArray, string $regtoken, string $lang='ca'): int {
         try {
             $shoppers = $this->dao->getByFilter("CrepShopper");
             $found = FALSE;
@@ -57,6 +57,9 @@ class CrepsService extends Service
             $order = new Order();
             $this->dao->persist($order);
             $order->setCrepShopper($shopper);
+            foreach ($ingredientsArray as $key => $value) {
+                $ingredientsArray[$key] = Translator::getKey($value, $lang);
+            }
             $ingredients = $this->dao->getByFilter("Ingredient");
             foreach ($ingredients as $ingredient) {
                 if (in_array($ingredient->getName(), $ingredientsArray)) $order->addIngredient($ingredient);

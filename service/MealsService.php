@@ -71,6 +71,7 @@ class MealsService extends Service
             return $data;
         }
         $hasMeals[$i]->setAssisted(TRUE);
+        $hasMeals[$i]->setDate(new \DateTime());
         try {
             $this->dao->flush();
         } catch (\Exception $e) {
@@ -82,6 +83,7 @@ class MealsService extends Service
     
     public function getMealStatistics(Meal $meal): array {
         $data = [];
+        $data['id'] = $meal->getId();
         $data['date'] = $meal->getDate()->format('d/m/Y');
         $data['turn'] = TURNS[$meal->getTurn()];
         try {
@@ -130,6 +132,23 @@ class MealsService extends Service
                 }
             }
             throw new InstanceNotFoundException();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+    
+    public function getMealDiners(int $id): array {
+        $data = [];
+        try {
+            $meal = $this->dao->getById("Meal", $id);
+            $hasMeals = $this->dao->getByFilter("HasMeal", ['meal'=>$meal], ['assisted'=>'DESC', 'date'=>'DESC']);
+            foreach ($hasMeals as $hasMeal) {
+                $data[] = [
+                    'user' => $hasMeal->getAttendance()->getUser(),
+                    'meal' => $hasMeal,
+                ];
+            }
+            return $data;
         } catch (\Exception $e) {
             throw $e;
         }

@@ -1,6 +1,7 @@
 @import 'navigation.tss';
 
-table {repeat: data(meals); }
+table#meals {repeat: data(meals); }
+table#meals:attr(id) {content: "meal-", iteration(id); }
 thead th:nth-child(1) {content: iteration(turn), " ", iteration(date) };
 thead th:nth-child(2) {content: iteration(total) };
 tbody tr.campusins td:nth-child(2) {content: iteration(Campusí) };

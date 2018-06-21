@@ -1,0 +1,4 @@
+.concert {repeat: data(concerts) }
+.concert a:attr(href) {content: iteration(link) }
+.concert img:attr(src) {content: iteration(relDir), iteration(image) }
+.concert h4 {content: iteration(title) }

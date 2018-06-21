@@ -28,6 +28,20 @@ function setCrepsEnabledReturn(msg) {
 	}
 }
 
+function setCrepsManagerPassword(elem) {
+	var crepsManagerPassword = getElemValue(elem);
+	var dataToSend = "password=" + crepsManagerPassword + "&function=setCrepsManagerPassword";
+	send(dataToSend, AJAXCONTROLLER, setCrepManagerPasswordReturn);
+}
+
+function setCrepManagerPasswordReturn(msg) {
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+	} else {
+		errorMessage(msg[1]);
+	}
+}
+
 function setMaxPendingCreps(elem) {
 	var maxPendingCreps = getElemValue(elem);
 	var dataToSend = "maxPendingCreps=" + maxPendingCreps + "&function=setMaxPendingCreps";
@@ -82,10 +96,11 @@ function editIngredient(event) {
 	var tr = getElementContainer(event.target, 'tr');
 	var id = tr.id.split('-')[1];
 	var name = tr.querySelector('.name');
+	var oldName = name.innerHTML;
 	var newName = promptMessage("Escriu el nom de l'ingredient", name.innerHTML);
-	if (newName != null) {
+	if (newName != null && newName != oldName) {
 		var visible = tr.querySelector('input').checked;
-		var dataToSend = "id=" + id + "&name=" + newName + "&visible=" + visible + "&function=setIngredient";
+		var dataToSend = "id=" + id + "&name=" + newName + "&oldname=" + oldName + "&visible=" + visible + "&function=setIngredient";
 		send(dataToSend, AJAXCONTROLLER, editIngredientReturn, [name, newName]);
 	}
 }
@@ -99,3 +114,24 @@ function editIngredientReturn(msg, options) {
 	}
 }
 
+function editLanguage(event, lang) {
+	var tr = getElementContainer(event.target, 'tr');
+	var id = tr.id.split('-')[1];
+	var name = tr.querySelector('.' + lang);
+	var original = tr.querySelector(".name");
+	var oldName = name.innerHTML;
+	var translated = promptMessage("Escriu la traducció de " + original.innerHTML, name.innerHTML);
+	if (translated != null && translated != oldName) {
+		var dataToSend = "original=" + original.innerHTML + "&translated=" + translated + "&lang=" + lang + "&function=translateIngredient";
+		send(dataToSend, AJAXCONTROLLER, editLanguageReturn, [name, translated]);
+	}
+}
+
+function editLanguageReturn(msg, options) {
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+		options[0].innerHTML = options[1];
+	} else {
+		errorMessage(msg[1]);
+	}
+}

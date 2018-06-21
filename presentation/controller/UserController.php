@@ -39,6 +39,7 @@ class UserController extends Controller
         $data = [];
         $ss = new StaffService();
         $sm = new StaffModel();
+        $user = NULL;
         //is staff?
         if (isset($post['password']) && strlen($post['password']) > 0) {
             try {

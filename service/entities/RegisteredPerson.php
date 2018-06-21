@@ -21,6 +21,7 @@ abstract class RegisteredPerson extends Person
     protected $email;
     
     public function __construct() {
+        parent::__construct();
         $this->name = "";
         $this->surnames = "";
         $this->email = "";

@@ -1,0 +1,6 @@
+h3 {content: data(date) }
+.activity {repeat: data(activity) }
+.activity .time {content: iteration(time) }
+.activity .title p {content: iteration(title) }
+.activity a:attr(href) {content: iteration(link), '?lang=', data(lang) }
+.activity p:attr(class) {content: iteration(class) }

@@ -17,6 +17,12 @@ body {
 	width: 100%;
 }
 
+.incorrectPassword {
+	color: red;
+	font-style: italic;
+	font-size: 60%;
+}
+
 .inline {
 	display: inline;
 }

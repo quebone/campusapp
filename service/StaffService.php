@@ -80,6 +80,9 @@ class StaffService extends Service
             if (isset($_SESSION['email']) && !strcmp($staff->getEmail(), $_SESSION['email'])) {
                 throw new \Exception('No et pots eliminar tu mateix');
             }
+            foreach ($this->dao->getByFilter("Notification", ['staff'=>$staff]) as $notification) {
+                $this->dao->remove($notification);
+            }
             $this->dao->remove($staff);
             $this->dao->flush();
         } catch (\Exception $e) {

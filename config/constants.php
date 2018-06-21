@@ -8,6 +8,8 @@ define('FILESDIR', BASEDIR.'files/');
 define('LANGUAGESDIR', BASEDIR.'languages/');
 define('TMPDIR', 'tmp/');
 define('ACCREDITATIONSDIR', 'accreditations/');
+define('WEBDIR', 'app-info/');
+define('WEBTPLDIR', WEBDIR.'template/');
 
 define('ENTITIESNS', 'Campusapp\\Service\\Entities\\');
 
@@ -18,6 +20,12 @@ define('REMOTE', 1);
 
 define('ADMIN_EGS_EMAIL', 'admin@esclatgospelsingers.com');
 define('DEFAULT_PASSWORD', 'campusgospel');
+
+define('CATALAN', 'ca');
+define('SPANISH', 'es');
+define('FRENCH', 'fr');
+define('ENGLISH', 'en');
+define('DEFAULT_LANGUAGE', CATALAN);
 
 // user groups
 define('CAMPUSI', 1);
@@ -97,3 +105,6 @@ const TURNS = [
     LUNCH => 'Dinar',
     DINNER => 'Sopar',
 ];
+
+define('MINCREPPASSWORDLENGTH', 3);
+define('MAXCREPPASSWORDLENGTH', 20);

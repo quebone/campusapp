@@ -11,6 +11,9 @@ $ss = new SystemService();
 
 $data = [];
 $data['ingredients'] = $ic->getIngredients();
+$data['ingredients'] = $ic->translateIngredients($data['ingredients'], SPANISH);
+$data['ingredients'] = $ic->translateIngredients($data['ingredients'], ENGLISH);
+$data['ingredients'] = $ic->translateIngredients($data['ingredients'], FRENCH);
 $data['system'] = $ss->getSystem()->toArray();
 require_once 'navigation.php';
 

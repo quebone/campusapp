@@ -1,3 +1,6 @@
 @import 'navigation.tss';
 
 #crepsEnabled:[data(system.crepsEnabled)=true]:attr(checked) {content: "" };
+#login:[data(system.logged)=true]:attr(hidden) {content: "" };
+#incorrectPassword:[data(system.incorrectPassword)=false]:attr(hidden) {content: "" };
+#data:[data(system.logged)=false]:attr(hidden) {content: "" };

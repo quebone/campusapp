@@ -18,6 +18,8 @@ class System implements IEntity
     private $crepsManagerEnabled;
     /** @Column(type="integer") **/
     private $maxPendingCreps;
+    /** @Column(type="string", length=20) **/
+    private $crepsManagerPassword;
     
     private function __construct() {
     }
@@ -30,7 +32,7 @@ class System implements IEntity
         return $this->crepsEnabled;
     }
     
-    public function setcrepsEnabled($crepsEnabled) {
+    public function setCrepsEnabled($crepsEnabled) {
         $this->crepsEnabled = $crepsEnabled;
     }
     
@@ -50,12 +52,21 @@ class System implements IEntity
         $this->maxPendingCreps = $maxPendingCreps;
     }
     
+    public function getCrepsManagerPassword(): string {
+        return $this->crepsManagerPassword;
+    }
+    
+    public function setCrepsManagerPassword(string $crepsManagerPassword) {
+        $this->crepsManagerPassword = $crepsManagerPassword;
+    }
+    
     public function toArray(): array {
         return [
             "id" => $this->id,
             'crepsEnabled' => $this->crepsEnabled,
             'maxPendingCreps' => $this->maxPendingCreps,
             'crepsManagerEnabled' => $this->crepsManagerEnabled,
+            'crepsManagerPassword' => $this->crepsManagerPassword,
         ];
     }
     

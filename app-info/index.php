@@ -1,40 +1,30 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="utf-8">
-
-  <title>Informació</title>
-  <meta name="description" content="Informació del Campus Gospel Rajadell">
-  <meta name="author" content="Carles Canellas" >
-
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <title>Concerts</title>
+    <meta content="width=device-width, initialscale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+	  <link rel="stylesheet" href="css/styles.css?v=1.0">
 </head>
-
 <body>
-  <header>
-  </header>
-	<!-- Begin page content -->
-	<main role="main">
-   <div class="container">
-			<div class="py-2"></div>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-        	<h4>Concerts</h4>
-        	<a href="concerts.php" ><img src="images/concerts.jpg" alt="" class="img-fluid link"></a>
+    <div class="container">
+        <div class=" col-sm-12 row">
+        
+            <div class="col-sm-4">
+                <div class="col-sm-12 thumbnail text-center">
+                    <img alt="" class="img-responsive" src=
+                    "http://www.wallpapereast.com/static/images/6801692-lovely-nature-wallpaper.jpg">
+
+                    <div class="caption">
+                        <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="col-md-6 mb-3">
-        	<h4>Programa</h4>
-        	<a href="schedule.php" ><img src="images/schedule.jpg" alt="" class="img-fluid link"></a>
-        </div>
-      </div>
-		</div>
-	
-	</main>
-	
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>

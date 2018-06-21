@@ -20,4 +20,18 @@ class MealsModel extends Model
             return $data;
         }
     }
+    
+    public function getDinersData(array $diners): array {
+        $data = [];
+        foreach ($diners as $diner) {
+            $date = $diner['meal']->getDate();
+            $data[] = [
+                'name' => $diner['user']->getName(),
+                'surnames' => $diner['user']->getSurnames(),
+                'assisted' => $diner['meal']->getAssisted(),
+                'date' => $date ? $date->format('d-m-Y H:i:s') : "",
+            ];
+        }
+        return $data;
+    }
 }
