@@ -58,6 +58,7 @@ class NotificationsService extends Service
                 $fbs->setTitle($notification->getTitle());
                 $fbs->setBody($notification->getBody());
                 $fbs->setMessage($notification->getMessage());
+                $fbs->setIcon("ic_music_note_black_24dp");
                 try {
                     $fbs->send();
                     $sent++;

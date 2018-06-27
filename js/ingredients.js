@@ -1,3 +1,7 @@
+window.onload = function () {
+	getMostOrderedIngredients();	
+}
+
 function setVisible(event) {
 	var tr = getElementContainer(event.target, 'tr');
 	var id = tr.id.split('-')[1];
@@ -7,6 +11,20 @@ function setVisible(event) {
 }
 
 function setVisibleReturn(msg) {
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+	} else {
+		errorMessage(msg[1]);
+	}
+}
+
+function setCrepsShopEnabled(elem) {
+	var crepsShopEnabled = elem.checked;
+	var dataToSend = "crepsEnabled=" + crepsShopEnabled + "&function=setCrepsEnabled";
+	send(dataToSend, AJAXCONTROLLER, setCrepsShopEnabledReturn);
+}
+
+function setCrepsShopEnabledReturn(msg) {
 	msg = JSON.parse(msg);
 	if (msg[0]) {
 	} else {
@@ -133,5 +151,62 @@ function editLanguageReturn(msg, options) {
 		options[0].innerHTML = options[1];
 	} else {
 		errorMessage(msg[1]);
+	}
+}
+
+function getMostOrderedIngredients() {
+	var dataToSend = "function=getMostOrderedIngredients";
+	send(dataToSend, AJAXCONTROLLER, getMostOrderedIngredientsReturn);
+}
+
+function getMostOrderedIngredientsReturn(msg) {
+	msg = JSON.parse(msg);
+	if (msg[0]) {
+		if (msg[1].length > 0) {
+			$('#modal').modal('show');
+			drawIngredientsChart(msg[1]);
+		}
+	} else {
+		errorMessage(msg[1]);
+	}
+}
+
+function drawIngredientsChart(ingredients) {
+	// Load the Visualization API and the corechart package.
+	google.charts.load('current', {'packages':['corechart']});
+	
+	// Set a callback to run when the Google Visualization API is loaded.
+	google.charts.setOnLoadCallback(drawChart);
+	
+	// Callback that creates and populates a data table,
+	// instantiates the pie chart, passes in the data and
+	// draws it.
+	function drawChart() {
+	
+	  // Create the data table.
+	  var data = new google.visualization.DataTable();
+	  data.addColumn('string', 'Ingredient');
+	  data.addColumn('number', 'Orders');
+	  for (var i=0; i<ingredients.length; i++) {
+		  data.addRows([
+		    [ingredients[i].name, ingredients[i].number], 
+		  ]);
+		}
+	
+	  // Set chart options
+	  var options = {
+			is3D: true,
+			chartArea: {
+				top: 0,
+				left: 0,
+				width: 700,
+			},
+      width: 700,
+      height: 600
+    };
+	
+	  // Instantiate and draw our chart, passing in some options.
+	  var chart = new google.visualization.PieChart(document.getElementById('chart-ingredients'));
+	  chart.draw(data, options);
 	}
 }

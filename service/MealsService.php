@@ -120,8 +120,9 @@ class MealsService extends Service
     
     private function getCurrentMeal(): Meal {
         $currentDate = date('Y-m-d');
-//         $currentDate = '2018-07-06'; //FAKE!!!
         $currentHour = intval(date('H'));
+//         $currentDate = '2018-07-06'; //FAKE!!!
+//         $currentHour = 16; //FAKE!!!
         $currentTurn = ($currentHour > 10 && $currentHour < 18) ? LUNCH : DINNER;
         try {
             $meals = $this->dao->getByFilter("Meal");

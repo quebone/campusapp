@@ -20,15 +20,32 @@ class CrepsService extends Service
         }
     }
     
-    public function getCrepShopperPendingOrders(string $regtoken): array {
+    public function getCrepShopperPendingOrders(string $regtoken, string $lang = DEFAULT_LANGUAGE): array {
         $pending = [];
         try {
             $persons = $this->dao->getByFilter("Person", ['regtoken' => $regtoken]);
             if (count($persons) == 0) return [];
-            $shopper = $this->dao->getByFilter("CrepShopper", ['person' => $persons[0]])[0];
-            $orders = $shopper->getOrders();
-            foreach ($orders as $order) {
-                if (!$order->getServed()) $pending[] = $order->getId();
+            foreach ($persons as $person) {
+                $shoppers = $this->dao->getByFilter("CrepShopper", ['person' => $person]);
+                if (count($shoppers) > 0) {
+                    $shopper = $shoppers[0];
+                    $orders = $shopper->getOrders();
+                    foreach ($orders as $order) {
+                        if (!$order->getServed()) {
+                            $orderData = $order->toArray();
+                            $ingredients = $order->getIngredients();
+                            foreach ($ingredients as $ingredient) {
+                                $ingredientData = $ingredient->toArray();
+                                if (strcmp($lang, DEFAULT_LANGUAGE)) {
+                                    $translated = Translator::get($ingredientData['name'], $lang);
+                                    if ($translated != NULL) $ingredientData['name'] = $translated;
+                                }
+                                $orderData['ingredients'][] = $ingredientData;
+                            }
+                            $pending[] = $orderData;
+                        }
+                    }
+                }
             }
             return $pending;
         } catch (\Exception $e) {
@@ -58,7 +75,8 @@ class CrepsService extends Service
             $this->dao->persist($order);
             $order->setCrepShopper($shopper);
             foreach ($ingredientsArray as $key => $value) {
-                $ingredientsArray[$key] = Translator::getKey($value, $lang);
+                $original = Translator::getKey($value, $lang);
+                if ($original != NULL) $ingredientsArray[$key] = $original;
             }
             $ingredients = $this->dao->getByFilter("Ingredient");
             foreach ($ingredients as $ingredient) {
@@ -137,6 +155,7 @@ class CrepsService extends Service
         $fbs->setTitle("El teu crep ja està fet. Té el número " . $order->getId());
         $fbs->setBody("El pots recollir a la parada. Pensa a portar el tiquet");
         $fbs->setMessage("El crep de " . $ingredientsList . " ja està fet amb el número " . $order->getId() . " El pots recollir a la parada. Pensa a portar el tiquet");
+        $fbs->setIcon("crep_black_24dp");
         $fbs->send();
     }
 }

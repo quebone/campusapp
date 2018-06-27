@@ -21,6 +21,10 @@
 		<div class="container">
 			<div class="row">
         <div class="custom-control custom-checkbox mr-3">
+          <input type="checkbox" class="custom-control-input" id="crepsShopEnabled" onchange="setCrepsShopEnabled(this)">
+          <label class="custom-control-label" for="crepsShopEnabled">Habilitar la venda de creps</a>
+        </div>
+        <div class="custom-control custom-checkbox mr-3">
           <input type="checkbox" class="custom-control-input" id="crepsManagerEnabled" onchange="setCrepsManagerEnabled(this)">
           <label class="custom-control-label" for="crepsManagerEnabled">Habilitar el</label> <a href="creps.php" target="_blank">gestor de vendes</a>
         </div>
@@ -83,7 +87,25 @@
 	  </div>
 	</main>
 	
-		<footer class="footer">
+	<div id="modal" class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Ingredients més demanats</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+  	      </button>
+  	    </div>
+  	    <div class="modal-body">
+  	    	<div class="container-fluid">
+  	    		<div id="chart-ingredients"></div>
+          </div>
+        </div>
+		  </div>
+	  </div>
+  </div>
+
+	<footer class="footer">
 	  <div class="container">
 	    <a href="http://esclatgospelsingers.com" target="_blank"><span class="text-muted">Esclat Gospel Singers</span></a>
 	  </div>
@@ -91,6 +113,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="js/scripts.js"></script>
 <script src="js/ingredients.js"></script>
 </body>

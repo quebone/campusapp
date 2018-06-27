@@ -36,11 +36,13 @@ class CrepsController extends Controller
     
     public function createOrder(array $post): int {
         $post = $this->decodeUrl($post);
-        $pendingOrders = $this->cs->getCrepShopperPendingOrders($post['regtoken']);
+        $pendingOrders = $this->cs->getCrepShopperPendingOrders($post['regtoken'], $post['lang']);
         $ss = new SystemService();
         if (!$ss->getCrepsEnabled()) throw new CrepShopIsClosedException();
         if (count($pendingOrders) >= $ss->getSystem()->getMaxPendingCreps()) {
-            throw new MaxCrepOrdersException();
+            $e = new MaxCrepOrdersException();
+            $e->setMessage(Translator::get($e->getMessage(), $post['lang']));
+            throw $e;
         }
         $ingredients = $post['ingredients'];
         $ingredients = explode(",", substr($ingredients, 1, strlen($ingredients) - 2));
@@ -53,7 +55,8 @@ class CrepsController extends Controller
     }
     
     public function getPendingOrders(array $post): array {
-        return $this->cs->getCrepShopperPendingOrders($post['regtoken']);
+        $post = $this->decodeUrl($post);
+        return $this->cs->getCrepShopperPendingOrders($post['regtoken'], $post['lang']);
     }
     
     public function getOrdersNotSent(array $post): array {
@@ -105,5 +108,4 @@ class CrepsController extends Controller
         $ss = new SystemService();
         return $ss->getCrepsManagerEnabled();
     }
-    
 }

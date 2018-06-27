@@ -1,0 +1,76 @@
+<?xml version='1.0' standalone='yes'?>
+<schedule>
+	<date>Viernes 6/7/2018</date>
+	<activity>
+		<time>8h30</time>
+		<title>Llegada, inscripciones y alojamiento de los campusins/as + 8:30h Desayuno</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>10h</time>
+		<title>TALLER 1: OLGA LÓPEZ</title>
+		<class>blue link</class>
+		<link>../../workshops/01/index.php</link>
+	</activity>
+	<activity>
+		<time>11h30</time>
+		<title>Pausa-coffee</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>12h</time>
+		<title>TALLER 1: OLGA LÓPEZ</title>
+		<class>blue link</class>
+		<link>../../workshops/01/index.php</link>
+	</activity>
+	<activity>
+		<time>14h</time>
+		<title>Almuerzo</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>15h</time>
+		<title>Panxing time</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>16h</time>
+		<title>TALLER 2: HOLLIE HOOD-MINCEY</title>
+		<class>pink link</class>
+		<link>../../workshops/02/index.php</link>
+	</activity>
+	<activity>
+		<time>17h30</time>
+		<title>Pausa-tea</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>17h45</time>
+		<title>TALLER 2: HOLLIE HOOD-MINCEY</title>
+		<class>pink link</class>
+		<link>../../workshops/02/index.php</link>
+	</activity>
+	<activity>
+		<time>18h45</time>
+		<title>SHOW YOUR GOSPEL!</title>
+		<class>green link</class>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>19h15</time>
+		<title>Pruebas de sonido</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>20h</time>
+		<title>Cena</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>22h</time>
+		<title>CONCIERTO SINGING SENSATIONS YOUTH CHOIR</title>
+		<class>blue link</class>
+		<link>../../concerts/01/index.php</link>
+	</activity>
+</schedule>
+

@@ -14,6 +14,7 @@ class FirebaseService extends Service
     private $action;
     private $action_destination;
     private $sound;
+    private $icon;
     private $data;
     private $priority;
     
@@ -21,6 +22,7 @@ class FirebaseService extends Service
         parent::__construct();
         $this->api = 'AAAA9Wj-1pQ:APA91bHyV2PjSk58KwhCd1zZnA7gE2CROk9lsUvZHilqR--W0wpyDnps-FWNJBdTV8vjM4p4Ae7_qknaPRuizka2t4hAMQOwJUxdwcVU8NfVRubTAtD1_pS9tpM0U-0gWZHfOlKNdqE1';
         $this->sound = 'default';
+        $this->icon = "ic_music_note_black_24dp";
     }
 
     public function setApi(string $api) {
@@ -59,11 +61,20 @@ class FirebaseService extends Service
         $this->data = $data;
     }
     
+    public function setSound(string $sound) {
+        $this->sound = $sound;
+    }
+    
+    public function setIcon(string $icon) {
+        $this->icon = $icon;
+    }
+    
     public function getNotification(): array {
         return [
             'title'=> $this->title,
             'body' => $this->body,
             'sound' => $this->sound,
+            'icon' => $this->icon,
         ];
     }
     

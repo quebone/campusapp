@@ -1,5 +1,6 @@
 @import 'navigation.tss';
 
+#crepsShopEnabled:[data(system.crepsEnabled)=true]:attr(checked) {content: "" };
 #crepsManagerEnabled:[data(system.crepsManagerEnabled)=true]:attr(checked) {content: "" };
 #crepsManagerPassword:attr(value) {content: data(system.crepsManagerPassword)}
 #maxPendingCreps:attr(value) {content: data(system.maxPendingCreps)}

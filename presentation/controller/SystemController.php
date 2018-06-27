@@ -14,12 +14,14 @@ class SystemController extends Controller
     
     public function setCrepsEnabled(array $post): bool {
         $post = $this->normalize($post);
-        return $this->ss->setCrepsEnabled($post['crepsEnabled']);
+         $this->ss->setCrepsEnabled($post['crepsEnabled']);
+         return TRUE;
     }
     
     public function setCrepsManagerEnabled(array $post): bool {
         $post = $this->normalize($post);
-        return $this->ss->setCrepsManagerEnabled($post['crepsManagerEnabled']);
+        $this->ss->setCrepsManagerEnabled($post['crepsManagerEnabled']);
+        return TRUE;
     }
     
     public function setCrepsManagerPassword(array $post): bool {
@@ -34,6 +36,26 @@ class SystemController extends Controller
     
     public function setMaxPendingCreps(array $post): bool {
         $post = $this->normalize($post);
-        return $this->ss->setMaxPendingCreps($post['maxPendingCreps']);
+        $this->ss->setMaxPendingCreps($post['maxPendingCreps']);
+        return TRUE;
+    }
+    
+    public function saveAllSettings(array $post): bool {
+        $post = $this->normalize($post);
+        if (isset($post['crepsEnabled'])) $this->setCrepsEnabled($post);
+        if (isset($post['crepsManagerEnabled'])) $this->setCrepsManagerEnabled($post);
+        if (isset($post['maxPendingCreps'])) $this->setMaxPendingCreps($post);
+        if (isset($post['password'])) {
+            try {
+                $this->setCrepsManagerPassword($post);
+            } catch (\Exception $e) {
+            } finally {
+                return TRUE;
+            }
+        }
+    }
+    
+    public function getSystem(): array {
+        return $this->ss->getSystem()->toArray();
     }
 }

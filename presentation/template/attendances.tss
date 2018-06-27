@@ -1,5 +1,7 @@
 @import 'navigation.tss';
 
+h4 {content: "Assistents al Campus (", data(total), ")" }
+
 tbody tr {repeat: data(attendants)};
 tbody tr:attr(id) {content: "id-", iteration(id) };
 tbody tr td:nth-child(3) {content: iteration(name), " ", iteration(surnames) };

@@ -1,0 +1,44 @@
+<?xml version='1.0' standalone='yes'?>
+<schedule>
+	<date>Dimanche 8/7/2018</date>
+	<activity>
+		<time>9h30</time>
+		<title>Petit déjeuner</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>11h</time>
+		<title>COUNTRY SERVICE Linda Tillery + Terrance Kelly</title>
+		<class>pink link</class>
+		<link>../../workshops/03/index.php</link>
+	</activity>
+	<activity>
+		<time>11h</time>
+		<title>MINI CAMPUS Laia Badrenas</title>
+		<class>pink link</class>
+		<link>../../workshops/04/index.php</link>
+	</activity>
+	<activity>
+		<time>14h</time>
+		<title>Paella communauté</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>16h</time>
+		<title>ATELIER 5: Ramon Escalé</title>
+		<class>orange link</class>
+		<link>../../workshops/05/index.php</link>
+	</activity>
+	<activity>
+		<time>17h45</time>
+		<title>Tests sonores</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>19h30</time>
+		<title>CONCERT ESCLAT GOSPEL SINGERS + ESCLAT JUNIOR</title>
+		<class>blue link</class>
+		<link>../../concerts/03/index.php</link>
+	</activity>
+</schedule>
+

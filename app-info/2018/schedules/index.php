@@ -5,7 +5,6 @@ use Campusapp\Presentation\Controller\WebInfoController;
 $rootDir = '../../../';
 require_once $rootDir.'init.php';
 
-$_GET['lang'] = 'ca';
 $page = new WebPage();
 $controller = new WebInfoController($rootDir);
 $data['schedules'] = $controller->getCurrentSchedules($_GET);

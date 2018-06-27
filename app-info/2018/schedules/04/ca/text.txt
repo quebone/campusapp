@@ -38,7 +38,7 @@
 		<time>19h30</time>
 		<title>CONCERT ESCLAT GOSPEL SINGERS + ESCLAT JUNIOR</title>
 		<class>blue link</class>
-		<link>../../concerts/01/index.php</link>
+		<link>../../concerts/03/index.php</link>
 	</activity>
 </schedule>
 

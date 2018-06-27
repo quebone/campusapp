@@ -24,7 +24,7 @@ class User extends RegisteredPerson implements IEntity
     private $city;
     /** @Column(type="string", length=5, nullable=true) **/
     private $postalCode;
-    /** @Column(type="string", length=9, nullable=true) **/
+    /** @Column(type="string", length=15, nullable=true) **/
     private $dni;
     /** @Column(type="boolean") **/
     private $privacy;

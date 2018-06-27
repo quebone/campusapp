@@ -67,4 +67,35 @@ class IngredientsService extends Service
             throw $e;
         }
     }
+    
+    public function getMostOrderedIngredients(): array {
+        $orders = $this->dao->getByFilter("Order");
+        $data = [];
+        foreach ($orders as $order) {
+            $ingredients = $order->getIngredients();
+            foreach ($ingredients as $ingredient) {
+                $found = FALSE;
+                $i = 0;
+                while (!$found && $i < count($data)) {
+                    if ($data[$i]['id'] == $ingredient->getId()) $found = TRUE;
+                    else $i++;
+                }
+                if ($found) $data[$i]['number']++;
+                else {
+                    $data[$i]['number'] = 1;
+                    $data[$i]['id'] = $ingredient->getId();
+                    $data[$i]['name'] = $ingredient->getName();
+                }
+            }
+        }
+        usort($data, array($this, "cmp"));
+        return $data;
+    }
+    
+    private function cmp($a, $b) {
+        if ($a['number'] == $b['number']) {
+            return 0;
+        }
+        return ($a['number'] > $b['number']) ? -1 : 1;
+    }
 }

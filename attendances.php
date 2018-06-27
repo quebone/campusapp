@@ -8,6 +8,7 @@ require_once 'sessions.php';
 $ss = new AttendancesController();
 $data = [];
 $data['attendants'] = $ss->getAttendants();
+$data['total'] = count($data['attendants']);
 $data['members'] = $ss->getEgsMembers();
 require_once 'navigation.php';
 

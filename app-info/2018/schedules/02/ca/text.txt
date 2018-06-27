@@ -54,7 +54,7 @@
 		<time>18h45</time>
 		<title>SHOW YOUR GOSPEL!</title>
 		<class>green link</class>
-		<link>../../workshops/02/index.php</link>
+		<link>#</link>
 	</activity>
 	<activity>
 		<time>19h15</time>

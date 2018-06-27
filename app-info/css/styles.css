@@ -47,7 +47,7 @@ h5 {
 }
 
 .schedule .time {
-	background-color: grey;
+	background-color: #405c89;
 	color: white;
 	font-weight: bold;
 	padding: .2rem;
@@ -56,6 +56,7 @@ h5 {
 
 .schedule .title {
 	padding: 0;
+	background-color: #fff3dd;
 }
 
 .schedule p {
@@ -79,7 +80,7 @@ h5 {
 }
 
 .blue {
-	background-color: #a0feff;
+	background-color: #7a8fb1;
 }
 
 .orange {
@@ -87,15 +88,15 @@ h5 {
 }
 
 .pink {
-	background-color: lightpink;
+	background-color: #ffaaa8;
 }
 
 .green {
-	background-color: lightgreen;
+	background-color: #88ce8c;
 }
 
 .link {
-	color: blue;
+/*	color: blue;*/
 	cursor: pointer;
 }
 

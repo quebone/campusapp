@@ -1,0 +1,21 @@
+<?xml version='1.0' standalone='yes'?>
+<schedule>
+	<date>Thursday 5/7/2018</date>
+	<activity>
+		<time>17h45</time>
+		<title>Arrival, registration and accommodation of campusins/es</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>20h</time>
+		<title>Welcome dinner</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>22h</time>
+		<title>OPEN SESSION</title>
+		<class>blue</class>
+		<link>#</link>
+	</activity>
+</schedule>
+

@@ -1,0 +1,76 @@
+<?xml version='1.0' standalone='yes'?>
+<schedule>
+	<date>Samedi 7/7/2018</date>
+	<activity>
+		<time>8h30</time>
+		<title>Petit déjeuner</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>10h</time>
+		<title>ATELIER 3: LINDA TILLERY + TERRANCE KELLY</title>
+		<class>pink link</class>
+		<link>../../workshops/03/index.php</link>
+	</activity>
+	<activity>
+		<time>11h30</time>
+		<title>Pause-coffee</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>12h</time>
+		<title>ATELIER 3: LINDA TILLERY + TERRANCE KELLY</title>
+		<class>pink link</class>
+		<link>../../workshops/03/index.php</link>
+	</activity>
+	<activity>
+		<time>14h</time>
+		<title>Déjeuner</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>15h</time>
+		<title>Panxing time</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>16h</time>
+		<title>ATELIER 3: LINDA TILLERY + TERRANCE KELLY</title>
+		<class>pink link</class>
+		<link>../../workshops/03/index.php</link>
+	</activity>
+	<activity>
+		<time>17h30</time>
+		<title>Pause-tea</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>17h45</time>
+		<title>ATELIER 3: LINDA TILLERY + TERRANCE KELLY</title>
+		<class>pink link</class>
+		<link>../../workshops/03/index.php</link>
+	</activity>
+	<activity>
+		<time>18h45</time>
+		<title>SHOW YOUR GOSPEL!</title>
+		<class>green link</class>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>19h15</time>
+		<title>Tests sonores</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>20h</time>
+		<title>Dîner</title>
+		<link>#</link>
+	</activity>
+	<activity>
+		<time>22h</time>
+		<title>CONCERT LINDA TILLERY AND THE CULTURAL HERITAGE CHOIR + TERRANCE KELLY</title>
+		<class>blue link</class>
+		<link>../../concerts/02/index.php</link>
+	</activity>
+</schedule>
+

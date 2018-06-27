@@ -5,4 +5,8 @@ class MaxCrepOrdersException extends \Exception {
     public function __construct() {
         $this->message = "No pots fer més comandes, encara en tens pendents de recollir\nPassa per la parada a demanar informació";
     }
+    
+    public function setMessage(string $message) {
+        $this->message = $message;
+    }
 }

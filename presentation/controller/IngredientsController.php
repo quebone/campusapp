@@ -101,4 +101,8 @@ class IngredientsController extends Controller
         }
         return $data;
     }
+    
+    public function getMostOrderedIngredients(): array {
+        return $this->is->getMostOrderedIngredients();
+    }
 }

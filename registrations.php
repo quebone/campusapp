@@ -8,6 +8,7 @@ require_once 'sessions.php';
 $ss = new RegistrationsController();
 $data = [];
 $data['registered'] = $ss->getRegistered();
+$data['total'] = count($data['registered']);
 require_once 'navigation.php';
 
 $template = new \Transphporm\Builder(TPLDIR.'registrations.html', TPLDIR.'registrations.tss');
