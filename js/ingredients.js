@@ -160,6 +160,7 @@ function getMostOrderedIngredients() {
 }
 
 function getMostOrderedIngredientsReturn(msg) {
+			if (DEBUG) console.log(msg);
 	msg = JSON.parse(msg);
 	if (msg[0]) {
 		if (msg[1].length > 0) {
